@@ -10,6 +10,7 @@ export default function DatePicker(elementId, options) {
     mode: options.mode ?? 'single',
     onSelect: options.onSelect ?? null,
     blockedDays: options.blockedDays ?? [],
+    showDayNames: options.showDayNames ?? true,
   };
 
   this.init = function () {
@@ -31,6 +32,7 @@ export default function DatePicker(elementId, options) {
         )} ${this.currentDate.getFullYear()}</span>
         <button class="next-month">&gt;</button>
       </div>
+      ${this.options.showDayNames ? this.generateDayNames() : ''}
       <div class="datepicker-days">
         ${this.generateCalendar()}
       </div>
@@ -39,35 +41,56 @@ export default function DatePicker(elementId, options) {
     this.attachEventListeners();
   };
 
+  this.generateDayNames = function () {
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    return `<div class="datepicker-day-names">${dayNames
+      .map(day => `<div>${day}</div>`)
+      .join('')}</div>`;
+  };
+
   this.generateCalendar = function () {
     const year = this.currentDate.getFullYear();
     const month = this.currentDate.getMonth();
-    const daysInMonth =
-      month === 1 ? (this.isLeapYear(year) ? 29 : 28) : new Date(year, month + 1, 0).getDate();
-    const firstDayIndex = new Date(year, month, 1).getDay();
-    let calendarHtml = '';
+    const firstDayOfMonth = new Date(year, month, 1);
+    const lastDayOfLastMonth = new Date(year, month, 0).getDate();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    let firstDayIndex = firstDayOfMonth.getDay();
 
-    for (let i = 0; i < firstDayIndex; i++) {
-      calendarHtml += `<div class="empty-day"></div>`;
+    let calendarHtml = '<div class="datepicker-week">';
+
+    // days of last month
+    for (let i = firstDayIndex; i > 0; i--) {
+      const day = lastDayOfLastMonth - i + 1;
+      calendarHtml += this.generateDayCell(year, month - 1, day, false);
     }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-      let className = 'datepicker-day';
-      const date = new Date(year, month, day);
-      const dayOfWeek = date.getDay();
-
-      if (this.options.blockedDays.includes(dayOfWeek)) {
-        className += ' blocked';
-      } else if (this.isDateSelected(date)) {
-        className += ' selected';
-      } else if (this.isDateInRange(date)) {
-        className += ' in-range';
-      }
-
-      calendarHtml += `<div class="${className}" data-day="${day}">${day}</div>`;
+    // days of current month
+    for (let i = 1; i <= daysInMonth; i++) {
+      calendarHtml += this.generateDayCell(year, month, i);
     }
+    // days of next month
+    let lastDayIndex = new Date(year, month, daysInMonth).getDay();
+    for (let i = 1; lastDayIndex < 6; i++, lastDayIndex++) {
+      calendarHtml += this.generateDayCell(year, month + 1, i, false);
+    }
+    calendarHtml += '</div>'; // close the last week
 
     return calendarHtml;
+  };
+
+  this.generateDayCell = function (year, month, day, isCurrentMonth = true) {
+    const date = new Date(year, month, day);
+    const dayOfWeek = date.getDay();
+    let className = isCurrentMonth ? 'datepicker-day current-month' : 'datepicker-day';
+
+    if (this.options.blockedDays.includes(dayOfWeek)) {
+      className += ' blocked';
+    } else if (isCurrentMonth && this.isDateSelected(date)) {
+      className += ' selected';
+    } else if (isCurrentMonth && this.isDateInRange(date)) {
+      className += ' in-range';
+    }
+
+    return `<div class="${className}" data-day="${day}" data-month="${month}"><span>${day}</span></div>`;
   };
 
   this.isLeapYear = function (year) {
@@ -95,38 +118,40 @@ export default function DatePicker(elementId, options) {
     this.element.querySelector('.next-month').addEventListener('click', () => this.changeMonth(1));
 
     this.dayClickListener = event => {
-      if (
-        event.target.classList.contains('datepicker-day') &&
-        !event.target.classList.contains('blocked')
-      ) {
-        const day = parseInt(event.target.getAttribute('data-day'), 10);
-        this.handleDayClick(day);
+      const target = event.target.closest('.datepicker-day');
+      if (target && !target.classList.contains('blocked')) {
+        const day = parseInt(target.getAttribute('data-day'), 10);
+        const month = parseInt(target.getAttribute('data-month'), 10);
+        this.handleDayClick(day, month);
       }
     };
 
     this.element.querySelector('.datepicker-days').addEventListener('click', this.dayClickListener);
   };
 
-  this.handleDayClick = function (day) {
-    const date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day);
+  this.handleDayClick = function (day, month) {
+    const year = this.currentDate.getFullYear();
+    const date = new Date(year, month, day);
+
+    if (month !== this.currentDate.getMonth()) {
+      this.currentDate.setMonth(month);
+      this.currentDate.setFullYear(year);
+    }
 
     if (this.options.mode === 'single') {
       this.selectedStartDate = date;
       this.selectedEndDate = null;
-    } else {
-      if (!this.selectedStartDate) {
-        this.selectedStartDate = date;
-      } else if (!this.selectedEndDate) {
-        this.selectedEndDate = date;
-        if (this.selectedStartDate > this.selectedEndDate) {
-          [this.selectedStartDate, this.selectedEndDate] = [
-            this.selectedEndDate,
-            this.selectedStartDate,
-          ];
-        }
-      } else {
+    }
+
+    if (this.options.mode === 'range') {
+      if (!this.selectedStartDate || this.selectedEndDate) {
         this.selectedStartDate = date;
         this.selectedEndDate = null;
+      } else if (date < this.selectedStartDate) {
+        this.selectedEndDate = this.selectedStartDate;
+        this.selectedStartDate = date;
+      } else if (date > this.selectedStartDate) {
+        this.selectedEndDate = date;
       }
     }
 
@@ -136,17 +161,12 @@ export default function DatePicker(elementId, options) {
 
   this.changeMonth = function (offset) {
     this.currentDate.setMonth(this.currentDate.getMonth() + offset);
-    this.currentDate.setDate(1); // Reset to the first day of the month
     this.render();
   };
 
   this.triggerSelectCallback = function () {
     if (this.options.onSelect) {
-      if (this.options.mode === 'range' && this.selectedStartDate && this.selectedEndDate) {
-        this.options.onSelect(this.selectedStartDate, this.selectedEndDate);
-      } else if (this.options.mode === 'single' && this.selectedStartDate) {
-        this.options.onSelect(this.selectedStartDate);
-      }
+      this.options.onSelect(this.selectedStartDate, this.selectedEndDate);
     }
   };
 

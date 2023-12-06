@@ -1,6 +1,6 @@
 {
   "name": "easy-dates-picker",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A super lightweight vanilla JS date picker",
   "main": "dist/datepicker.bundle.js",
   "files": [

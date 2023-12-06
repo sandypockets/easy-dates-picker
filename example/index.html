@@ -22,13 +22,14 @@
           }
         }
 
-        const datePickerOptions = {
-          mode: 'single', // 'single' or 'range'
+        const options = {
+          mode: 'range', // 'single' or 'range'
           onSelect: datePickerCallback,
           blockedDays: [0, 6], // Prevent Saturday and Sunday from being selected
+          showDayNames: true,
         };
 
-        const datePicker = new DatePicker('easy-dates-picker', datePickerOptions);
+        const datePicker = new DatePicker('easy-dates-picker', options);
 
         datePicker.init();
       });
