@@ -56,7 +56,6 @@ export default function DatePicker(elementId, options) {
       const date = new Date(year, month, day);
       const dayOfWeek = date.getDay();
 
-      // Check if the day of week is in the blockedDays array
       if (this.options.blockedDays.includes(dayOfWeek)) {
         className += ' blocked';
       } else if (this.isDateSelected(date)) {
