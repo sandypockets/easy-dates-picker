@@ -45,3 +45,9 @@
   background-color: #a5d6a7;
 }
 
+.datepicker-day.blocked {
+  color: #ccc;
+  cursor: not-allowed;
+  background-color: #f8f8f8;
+}
+

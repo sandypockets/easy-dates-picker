@@ -51,6 +51,7 @@ Example implementation with JS Deliver
             const datePickerOptions = {
               mode: 'range', // 'range' or 'single'
               onSelect: datePickerCallback,
+              blockedDays: [0,6]
             };
         
             const datePicker = new DatePicker('easy-dates-picker', datePickerOptions);

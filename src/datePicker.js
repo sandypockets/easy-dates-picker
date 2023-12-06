@@ -6,7 +6,11 @@ export default function DatePicker(elementId, options) {
   this.currentDate.setDate(1);
   this.selectedStartDate = null;
   this.selectedEndDate = null;
-  this.options = options || { mode: 'single', onSelect: null };
+  this.options = {
+    mode: options.mode ?? 'single',
+    onSelect: options.onSelect ?? null,
+    blockedDays: options.blockedDays ?? [],
+  };
 
   this.init = function () {
     this.render();
@@ -50,11 +54,17 @@ export default function DatePicker(elementId, options) {
     for (let day = 1; day <= daysInMonth; day++) {
       let className = 'datepicker-day';
       const date = new Date(year, month, day);
-      if (this.isDateSelected(date)) {
+      const dayOfWeek = date.getDay();
+
+      // Check if the day of week is in the blockedDays array
+      if (this.options.blockedDays.includes(dayOfWeek)) {
+        className += ' blocked';
+      } else if (this.isDateSelected(date)) {
         className += ' selected';
       } else if (this.isDateInRange(date)) {
         className += ' in-range';
       }
+
       calendarHtml += `<div class="${className}" data-day="${day}">${day}</div>`;
     }
 
@@ -86,7 +96,10 @@ export default function DatePicker(elementId, options) {
     this.element.querySelector('.next-month').addEventListener('click', () => this.changeMonth(1));
 
     this.dayClickListener = event => {
-      if (event.target.classList.contains('datepicker-day')) {
+      if (
+        event.target.classList.contains('datepicker-day') &&
+        !event.target.classList.contains('blocked')
+      ) {
         const day = parseInt(event.target.getAttribute('data-day'), 10);
         this.handleDayClick(day);
       }

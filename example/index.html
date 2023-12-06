@@ -23,8 +23,9 @@
         }
 
         const datePickerOptions = {
-          mode: 'range',
+          mode: 'single', // 'single' or 'range'
           onSelect: datePickerCallback,
+          blockedDays: [0, 6], // Prevent Saturday and Sunday from being selected
         };
 
         const datePicker = new DatePicker('easy-dates-picker', datePickerOptions);
