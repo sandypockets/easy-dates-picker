@@ -1,0 +1,12 @@
+example/
+src/
+.gitignore
+.npmignore
+.prettierignore
+.prettierrc
+.env
+.DS_Store
+.idea/
+*.log
+package-lock.json
+webpack.config.js

@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Easy Dates Picker Demo</title>
+    <link rel="stylesheet" href="../dist/datepicker.css" />
+  </head>
+  <body>
+    <div id="easy-dates-picker"></div>
+    <script src="../dist/datepicker.bundle.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        function datePickerCallback(startDate, endDate) {
+          if (endDate) {
+            console.log(
+              'Date Range Selected:',
+              startDate.toDateString(),
+              'to',
+              endDate.toDateString()
+            );
+          } else {
+            console.log('Date Selected:', startDate.toDateString());
+          }
+        }
+
+        const datePickerOptions = {
+          mode: 'range',
+          onSelect: datePickerCallback,
+        };
+
+        const datePicker = new DatePicker('easy-dates-picker', datePickerOptions);
+
+        datePicker.init();
+      });
+    </script>
+  </body>
+</html>
