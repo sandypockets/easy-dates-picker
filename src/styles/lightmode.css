@@ -1,0 +1,26 @@
+.datepicker-day {
+  background-color: #f0f0f0;
+}
+
+.datepicker-day:hover {
+  background-color: #e0e0e0;
+}
+
+.datepicker-day.selected,
+.datepicker-day.in-range {
+  background-color: #4caf50;
+  color: white;
+}
+
+.datepicker-day.in-range {
+  background-color: #a5d6a7;
+}
+
+.datepicker-day.blocked {
+  color: #ccc;
+  background-color: #f8f8f8;
+}
+
+.datepicker-day-names > div {
+  color: black;
+}

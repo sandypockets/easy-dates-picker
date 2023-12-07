@@ -1,3 +1,6 @@
+@import 'lightmode.css';
+@import 'darkmode.css';
+
 .datepicker-calendar-container {
   border: 1px solid #ddd;
   padding: 10px;
@@ -19,38 +22,7 @@
   text-align: center;
   cursor: pointer;
   border-radius: 50%;
-  background-color: #f0f0f0;
   margin: 0 0 5px 5px;
-}
-
-.datepicker-day:hover {
-  background-color: #e0e0e0;
-}
-
-.datepicker-day.selected,
-.datepicker-day.in-range {
-  background-color: #4caf50;
-  color: white;
-}
-
-.datepicker-day.in-range {
-  background-color: #a5d6a7;
-}
-
-.datepicker-day.blocked {
-  color: #ccc;
-  cursor: not-allowed;
-  background-color: #f8f8f8;
-}
-
-.datepicker-day-names > div {
-  padding: 5px;
-  font-weight: bold;
-}
-
-.datepicker-day {
-  display: flex;
-  justify-content: center;
 }
 
 .datepicker-week,

@@ -1,0 +1,36 @@
+.dark .datepicker-calendar-container {
+  border: 1px solid #555;
+  background-color: #222;
+  color: #eee;
+}
+
+.dark .datepicker-header {
+  border-bottom: 1px solid #444;
+}
+
+.dark .datepicker-day {
+  background-color: #333;
+  color: #ddd;
+}
+
+.dark .datepicker-day:hover {
+  background-color: #444;
+}
+
+.dark .datepicker-day.selected,
+.dark .datepicker-day.in-range {
+  background-color: #1e8e3e;
+}
+
+.dark .datepicker-day.in-range {
+  background-color: #679267;
+}
+
+.dark .datepicker-day.blocked {
+  color: #aaa;
+  background-color: #2a2a2a;
+}
+
+.dark .datepicker-day-names > div {
+  color: #ccc;
+}

@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   entry: './src/datePicker.js',
@@ -35,6 +36,12 @@ module.exports = {
       filename: 'datepicker.css',
     }),
   ],
+  optimization: {
+    minimizer: [
+      `...`, // Includes the default minimizers (like Terser for JS)
+      new CssMinimizerPlugin(),
+    ],
+  },
   externals: {
     // Optionally exclude dependencies from the output bundle
   },

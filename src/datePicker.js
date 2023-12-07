@@ -16,8 +16,10 @@ export default function DatePicker(elementId, options) {
     showDayNames: options?.showDayNames ?? true,
     textInputEnabled: options?.textInputEnabled ?? false,
     textInputPlaceholder: options?.textInputPlaceholder ?? 'Choose a date',
+    darkMode: options?.darkMode ?? false,
   };
   this.init = function () {
+    if (this.options.darkMode) this.element.classList.add('dark');
     this.render();
     attachEventListeners(this.element, this.changeMonth.bind(this), this.handleDayClick.bind(this));
   };
