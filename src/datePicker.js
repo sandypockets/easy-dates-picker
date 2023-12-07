@@ -11,20 +11,39 @@ export default function DatePicker(elementId, options) {
     onSelect: options?.onSelect ?? null,
     blockedDays: options?.blockedDays ?? [],
     showDayNames: options?.showDayNames ?? true,
+    textInputEnabled: options?.textInputEnabled ?? false,
+    textInputPlaceholder: options?.textInputPlaceholder ?? 'Choose a date',
   };
-
   this.init = function () {
     this.render();
     this.attachEventListeners();
   };
 
   this.render = function () {
-    const oldElement = this.element.querySelector('.datepicker-days');
-    if (oldElement) {
-      oldElement.removeEventListener('click', this.dayClickListener);
-    }
+    this.element.innerHTML = '';
 
-    this.element.innerHTML = `
+    const input = document.createElement('input');
+    input.value = this.options.textInputPlaceholder;
+    input.type = 'text';
+    input.className = 'datepicker-input';
+    input.readOnly = true;
+    if (this.selectedStartDate) {
+      if (this.options.mode === 'single') {
+        input.value = this.selectedStartDate.toDateString();
+      } else if (this.options.mode === 'range') {
+        let inputValue = this.selectedStartDate.toDateString();
+        if (this.selectedEndDate) {
+          inputValue += ` - ${this.selectedEndDate.toDateString()}`;
+        }
+        input.value = inputValue;
+      }
+    }
+    this.element.appendChild(input);
+
+    const calendarContainer = document.createElement('div');
+    calendarContainer.className = 'datepicker-calendar-container';
+    calendarContainer.style.display = this.options.textInputEnabled ? 'none' : 'block';
+    calendarContainer.innerHTML = `
       <div class="datepicker-header">
         <button class="prev-month">&lt;</button>
         <span class="month-display">${this.getMonthName(
@@ -37,6 +56,19 @@ export default function DatePicker(elementId, options) {
         ${this.generateCalendar()}
       </div>
     `;
+    this.element.appendChild(calendarContainer);
+
+    if (this.options.textInputEnabled) {
+      input.addEventListener('click', () => {
+        calendarContainer.style.display = 'block';
+      });
+
+      document.addEventListener('click', event => {
+        if (!this.element.contains(event.target)) {
+          calendarContainer.style.display = 'none';
+        }
+      });
+    }
 
     this.attachEventListeners();
   };
@@ -57,7 +89,6 @@ export default function DatePicker(elementId, options) {
     const lastDayOfLastMonth = new Date(year, month, 0).getDate();
     let daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    // Adjust for leap year if February
     if (month === 1 && isLeapYear) {
       daysInMonth = 29;
     }
@@ -65,21 +96,20 @@ export default function DatePicker(elementId, options) {
     let firstDayIndex = firstDayOfMonth.getDay();
     let calendarHtml = '<div class="datepicker-week">';
 
-    // days of last month
     for (let i = firstDayIndex; i > 0; i--) {
       const day = lastDayOfLastMonth - i + 1;
       calendarHtml += this.generateDayCell(year, month - 1, day, false);
     }
-    // days of current month
+
     for (let i = 1; i <= daysInMonth; i++) {
       calendarHtml += this.generateDayCell(year, month, i);
     }
-    // days of next month
+
     let lastDayIndex = new Date(year, month, daysInMonth).getDay();
     for (let i = 1; lastDayIndex < 6; i++, lastDayIndex++) {
       calendarHtml += this.generateDayCell(year, month + 1, i, false);
     }
-    calendarHtml += '</div>'; // close the last week
+    calendarHtml += '</div>';
 
     return calendarHtml;
   };
@@ -123,16 +153,20 @@ export default function DatePicker(elementId, options) {
   this.attachEventListeners = function () {
     const prevMonthButton = this.element.querySelector('.prev-month');
     const nextMonthButton = this.element.querySelector('.next-month');
+    const calendarContainer = this.element.querySelector('.datepicker-calendar-container');
 
-    // Remove existing listeners if any
     prevMonthButton.removeEventListener('click', this.prevMonthClickListener);
     nextMonthButton.removeEventListener('click', this.nextMonthClickListener);
 
-    // Create new listeners
-    this.prevMonthClickListener = () => this.changeMonth(-1);
-    this.nextMonthClickListener = () => this.changeMonth(1);
+    this.prevMonthClickListener = event => {
+      event.stopPropagation();
+      this.changeMonth(-1);
+    };
+    this.nextMonthClickListener = event => {
+      event.stopPropagation();
+      this.changeMonth(1);
+    };
 
-    // Attach new listeners
     prevMonthButton.addEventListener('click', this.prevMonthClickListener);
     nextMonthButton.addEventListener('click', this.nextMonthClickListener);
 
@@ -145,50 +179,72 @@ export default function DatePicker(elementId, options) {
       }
     };
 
-    this.element.querySelector('.datepicker-days').addEventListener('click', this.dayClickListener);
+    const daysContainer = this.element.querySelector('.datepicker-days');
+    daysContainer.addEventListener('click', this.dayClickListener);
+
+    document.addEventListener('click', event => {
+      if (
+        !calendarContainer.contains(event.target) &&
+        !this.element.querySelector('.datepicker-input').contains(event.target)
+      ) {
+        calendarContainer.style.display = 'none';
+      }
+    });
   };
 
   this.handleDayClick = function (day, month) {
     let year = this.currentDate.getFullYear();
 
-    console.log('Clicked day:', day, 'Clicked month:', month, 'Current year:', year);
-
-    // Adjust the year and month for days from the previous or next month
     if (month === -1) {
-      month = 11; // December of the previous year
+      month = 11;
       year--;
     } else if (month === 12) {
-      month = 0; // January of the next year
+      month = 0;
       year++;
     }
 
-    // Create a new date object for the clicked day
     const clickedDate = new Date(year, month, day);
-
-    // Update currentDate to the clicked date
-    this.currentDate = clickedDate;
 
     if (this.options.mode === 'single') {
       this.selectedStartDate = clickedDate;
       this.selectedEndDate = null;
+      this.element.querySelector('.datepicker-input').value = clickedDate.toDateString();
+      this.triggerSelectCallback();
+      this.render();
+      this.element.querySelector('.datepicker-calendar-container').style.display = 'none';
     } else if (this.options.mode === 'range') {
       if (!this.selectedStartDate || this.selectedEndDate) {
         this.selectedStartDate = clickedDate;
         this.selectedEndDate = null;
-      } else if (clickedDate < this.selectedStartDate) {
-        this.selectedEndDate = this.selectedStartDate;
-        this.selectedStartDate = clickedDate;
-      } else if (clickedDate >= this.selectedStartDate) {
-        this.selectedEndDate = clickedDate;
+        this.render();
+        // Keep the calendar open and do not update the input yet
+        this.element.querySelector('.datepicker-calendar-container').style.display = 'block';
+      } else if (this.selectedStartDate && !this.selectedEndDate) {
+        if (clickedDate > this.selectedStartDate) {
+          this.selectedEndDate = clickedDate;
+          // Update the input only when both dates are selected
+          this.element.querySelector('.datepicker-input').value =
+            `${this.selectedStartDate.toDateString()} ${
+              this.selectedEndDate.toDateString() !== undefined
+                ? '- ' + this.selectedEndDate.toDateString()
+                : ''
+            }`;
+          this.triggerSelectCallback();
+          this.render();
+          // Close the calendar after selecting the end date
+          this.element.querySelector('.datepicker-calendar-container').style.display = 'none';
+        } else {
+          // If the clicked date is before the start date, reset the start date
+          this.selectedStartDate = clickedDate;
+          this.render();
+          // Keep the calendar open to select the end date
+          this.element.querySelector('.datepicker-calendar-container').style.display = 'block';
+        }
       }
     }
-    this.triggerSelectCallback();
-    this.render();
   };
 
   this.changeMonth = function (offset) {
-    console.log('Changing month. Current month:', this.currentDate.getMonth(), 'Offset:', offset);
-
     const currentYear = this.currentDate.getFullYear();
     const currentMonth = this.currentDate.getMonth();
     const currentDay = this.currentDate.getDate();
@@ -198,10 +254,8 @@ export default function DatePicker(elementId, options) {
     newDate.setDate(Math.min(currentDay, lastDayOfNewMonth));
 
     this.currentDate = newDate;
-
-    console.log('New month after change:', this.currentDate.getMonth());
-
     this.render();
+    this.element.querySelector('.datepicker-calendar-container').style.display = 'block';
   };
 
   this.triggerSelectCallback = function () {
