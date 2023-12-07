@@ -1,4 +1,5 @@
 import DatePicker from "../src/datePicker";
+import { getMonthName } from "../src/utils";
 
 jest.useFakeTimers();
 
@@ -66,8 +67,6 @@ describe('DatePicker', () => {
       // Check if the currentDate has moved to the next month
       expect(datePicker.currentDate.getMonth()).toBe(6); // July
     });
-
-
   });
 
   describe('Functionality and Interactions', () => {
@@ -127,7 +126,7 @@ describe('DatePicker', () => {
       datePicker.changeMonth(1);
       const newMonth = datePicker.currentDate.getMonth();
       expect(newMonth).not.toBe(initialMonth);
-      expect(datePicker.element.querySelector('.month-display').textContent).toContain(datePicker.getMonthName(newMonth));
+      expect(datePicker.element.querySelector('.month-display').textContent).toContain(getMonthName(newMonth));
     });
 
     test('resets end date in range mode on new start date selection', () => {
@@ -139,7 +138,6 @@ describe('DatePicker', () => {
       expect(datePicker.selectedStartDate).toEqual(newStartDate);
       expect(datePicker.selectedEndDate).toBeNull();
     });
-
   });
 
   describe('Leap Year Functionality', () => {
@@ -157,6 +155,4 @@ describe('DatePicker', () => {
       expect(days.length).toBe(29);
     });
   });
-
-
 });
