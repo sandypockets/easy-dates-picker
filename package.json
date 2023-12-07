@@ -1,6 +1,6 @@
 {
   "name": "easy-dates-picker",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A super lightweight vanilla JS date picker",
   "main": "dist/datepicker.bundle.js",
   "files": [
@@ -8,8 +8,17 @@
   ],
   "scripts": {
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "prettier": "prettier src/ --write && prettier example --write"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    },
+    "testEnvironment": "jest-environment-jsdom"
   },
   "author": "sandypockets",
   "license": "MIT",
@@ -18,6 +27,9 @@
     "@babel/preset-env": "^7.23.5",
     "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "mini-css-extract-plugin": "^2.7.6",
     "prettier": "3.1.0",
     "style-loader": "^3.3.3",

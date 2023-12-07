@@ -1,5 +1,7 @@
+__tests__/
 example/
 src/
+.babelrc
 .gitignore
 .npmignore
 .prettierignore
