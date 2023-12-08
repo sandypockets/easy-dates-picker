@@ -2,6 +2,7 @@ __tests__/
 example/
 src/
 .babelrc
+.github
 .gitignore
 .npmignore
 .prettierignore
