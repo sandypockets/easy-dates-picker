@@ -1,10 +1,13 @@
 # easy-dates-picker
-`easy-dates-picker` is a super lightweight, zero-dependency, customizable date picker library, written in vanilla JavaScript. 
+`easy-dates-picker` is a super lightweight, zero-dependency, localized, customizable date picker library, written in vanilla JavaScript. 
 
-![npm](https://img.shields.io/npm/dt/easy-dates-picker)
-![npm](https://img.shields.io/npm/dw/easy-dates-picker)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/easy-dates-picker)
+![npm bundle size](https://img.shields.io/bundlephobia/min/easy-dates-picker)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/sanypockets/easy-dates-picker/ci)
 ![GitHub issues](https://img.shields.io/github/issues/sandypockets/easy-dates-picker)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/sandypockets/easy-dates-picker)
+![npm](https://img.shields.io/npm/dt/easy-dates-picker)
+![npm](https://img.shields.io/npm/dw/easy-dates-picker)
 ![NPM](https://img.shields.io/npm/l/easy-dates-picker)
 
 Is this the right library for me?
@@ -13,10 +16,10 @@ Is this the right library for me?
 - You need both single and/or range date selection.
 - You need a localized date picker with 10 languages included.
 - You need a date picker that can automatically detect and display the correct language.
-- Accessibility and cross-browser compatibility are important for your project.
+- You need an accessible, fully keyboard navigable, cross-browser compatible date picker.
 - You need a date picker that can be easily styled beyond the defaults.
-- Your project does not use a virtual DOM.
 - You need a date picker that's lightning fast to set up.
+- Your project does not use a virtual DOM.
 
 ## Getting started
 Our Date Picker is as quick to set up as it is lightweight. Follow the directions and example below to learn how to integrate `easy-dates-picker` in your project. 
@@ -53,7 +56,7 @@ The `options` object is used to pass additional arguments to the picker on initi
 const options = {
   mode: 'single', // 'single' or 'range'
   onSelect: yourDatePickerCallback, // Callback triggered a date or date range is selected
-  blockedDays: [], // An array of week day indexes that won't be selectable (0=sunday, 1=monday, etc)
+  blockedDays: [0, 6], // Array of week day indexes that won't be selectable. Example blocks Sat and Sun (0=sunday, 1=monday, etc)
   showDayNames: true, // Display the day name at the top of the calendar
   textInputEnabled: true, // Display an input field with the selected date. The calendar becomes visible when clicking the input
   darkMode: false, // Use light or dark colour scheme
@@ -63,7 +66,21 @@ const options = {
 };
 ```
 
-Of these options, only `onSelect` is required. The others will fallback to defaults if not provided. 
+Of these options, only `onSelect` is required. For other options not provided, they fallback to these defaults:
+
+```javascript
+const options = {
+  mode: 'single',
+  onSelect: yourDatePickerCallback, // Required, there is no fallback
+  blockedDays: [],
+  showDayNames: true,
+  textInputEnabled: false,
+  darkMode: false,
+  language: 'en',
+  usePageLanguage: false,
+  usePageLanguageFallback: 'en'
+};
+```
 
 #### `onSelect` callback
 The `options` object requires that you provide a callback function. The callback will run when the user picks a new date. The callback has access to `startDate` and (if using a range) `endDate`. 
@@ -153,7 +170,7 @@ To contribute code:
 3. Send a pull request from each feature branch to the main branch.
 4. Please adhere to the existing code style and conventions.
 
-The project uses Prettier to manage code style. Before committing your code, please be sure to format your code by running `npm run prettier`
+* The project uses Prettier to manage code style. Before committing your code, please be sure to format your code by running `npm run prettier`
 
 ## License
 MIT. See [LICENSE.md](./LICENSE.md)

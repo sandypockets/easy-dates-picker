@@ -59,5 +59,5 @@ export function generateDayCell(year, month, day, isCurrentMonth, isDateSelected
     className += ' in-range';
   }
 
-  return `<div class="${className}" data-day="${day}" data-month="${month}"><span>${dayDisplay}</span></div>`;
+  return `<div tabindex="0" class="${className}" data-day="${day}" data-month="${month}"><span>${dayDisplay}</span></div>`;
 }
