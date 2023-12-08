@@ -182,5 +182,55 @@ describe('Localization', () => {
     const monthDisplay = datePicker.element.querySelector('.month-display').textContent;
     expect(monthDisplay).toContain('八月 2023');
   });
-
 });
+
+describe('Localization with Page Language', () => {
+  let datePicker;
+  const containerId = 'test-container';
+
+  beforeEach(() => {
+    document.body.innerHTML = `<div id="${containerId}"></div>`;
+  });
+
+  const setHtmlLangAttribute = (lang) => {
+    document.documentElement.lang = lang;
+  };
+
+  const testPageLanguageSetting = (lang, expectedDayName, expectedMonthName) => {
+    test(`adapts to page language ${lang}`, () => {
+      setHtmlLangAttribute(lang);
+      datePicker = new DatePicker(containerId, {
+        mode: 'single',
+        onSelect: jest.fn(),
+        usePageLanguage: true
+      });
+      datePicker.init();
+      datePicker.currentDate = new Date(2023, 0, 1); // January 1, 2023
+      datePicker.render();
+
+      const dayNames = datePicker.element.querySelector('.datepicker-day-names').textContent;
+      const monthDisplay = datePicker.element.querySelector('.month-display').textContent;
+
+      expect(dayNames).toContain(expectedDayName);
+      expect(monthDisplay).toContain(expectedMonthName);
+    });
+  };
+
+
+  testPageLanguageSetting('en', 'Sun', 'January 2023');
+  testPageLanguageSetting('fr', 'Dim', 'Janvier 2023');
+  testPageLanguageSetting('es', 'Dom', 'Enero 2023');
+  testPageLanguageSetting('de', 'So', 'Januar 2023');
+  testPageLanguageSetting('it', 'Dom', 'Gennaio 2023');
+  testPageLanguageSetting('nl', 'Zo', 'Januari 2023');
+  testPageLanguageSetting('pt', 'Dom', 'Janeiro 2023');
+  testPageLanguageSetting('ja', '日', '一月 2023');
+  testPageLanguageSetting('zh-CN', '日', '一月 2023');
+  testPageLanguageSetting('zh-TW', '日', '一月 2023');
+  testPageLanguageSetting('ru', 'Вс', 'Январь 2023');
+
+  afterEach(() => {
+    setHtmlLangAttribute('en');
+  });
+});
+

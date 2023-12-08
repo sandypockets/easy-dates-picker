@@ -3,6 +3,7 @@ import { attachEventListeners } from './eventHandlers';
 import { generateCalendarContainer } from './generateCalendarContainer';
 import currentDates from './currentDates';
 import { inputPlaceholderTranslations } from './localization';
+import { getPageLanguage } from './utils';
 
 export default function DatePicker(elementId, options) {
   this.element = document.getElementById(elementId);
@@ -17,8 +18,12 @@ export default function DatePicker(elementId, options) {
     showDayNames: options?.showDayNames ?? true,
     textInputEnabled: options?.textInputEnabled ?? false,
     darkMode: options?.darkMode ?? false,
-    language: options?.language ?? 'en',
-    textInputPlaceholder: options?.textInputPlaceholder ?? inputPlaceholderTranslations[options?.language ?? 'en'],
+    usePageLanguage: options?.usePageLanguage ?? false,
+    usePageLanguageFallback: options?.usePageLanguageFallback ?? 'en',
+    language: options?.usePageLanguage ? getPageLanguage(options?.usePageLanguageFallback) : options?.language ?? 'en',
+    textInputPlaceholder:
+      options?.textInputPlaceholder ??
+      inputPlaceholderTranslations[options?.usePageLanguage ? getPageLanguage() : options?.language ?? 'en'],
   };
   this.init = function () {
     if (this.options.darkMode) this.element.classList.add('dark');

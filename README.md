@@ -11,13 +11,15 @@ Is this the right library for me?
 
 - You need a date picker with zero external dependencies.
 - You need both single and/or range date selection.
-- You need a localized date picker with translations included .
+- You need a localized date picker with 10 languages included.
+- You need a date picker that can automatically detect and display the correct language.
 - Accessibility and cross-browser compatibility are important for your project.
 - You need a date picker that can be easily styled beyond the defaults.
 - Your project does not use a virtual DOM.
 - You need a date picker that's lightning fast to set up.
 
 ## Getting started
+Our Date Picker is as quick to set up as it is lightweight. Follow the directions and example below to learn how to integrate `easy-dates-picker` in your project. 
 
 ### Package manager
 
@@ -55,7 +57,9 @@ const options = {
   showDayNames: true, // Display the day name at the top of the calendar
   textInputEnabled: true, // Display an input field with the selected date. The calendar becomes visible when clicking the input
   darkMode: false, // Use light or dark colour scheme
-  language: 'en', // language ISO code, defaults to en
+  language: 'en', // language ISO code, defaults to en -> ignored if usePageLanguage is true
+  usePageLanguage: true, // Looks for a lang attribute on the page, and if the language is supported, uses it
+  usePageLanguageFallback: 'en' // If usePageLanguage is true, and the page language is not supported, use this language
 };
 ```
 
@@ -93,14 +97,16 @@ datePicker.init();
 
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>Test DatePicker</title>
+        <title>Easy Dates Picker Demo</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easy-dates-picker/dist/datepicker.css">
     </head>
     <body>
+        <!--  Date Picker mounted here  -->
         <div id="easy-dates-picker"></div>
         <script src="https://cdn.jsdelivr.net/npm/easy-dates-picker/dist/datepicker.bundle.js"></script>
+        <!--  Initialize Date Picker in script -->
         <script>
           document.addEventListener('DOMContentLoaded', function () {
             
@@ -116,14 +122,20 @@ datePicker.init();
                 console.log('Date Selected:', startDate.toDateString());
               }
             }
-        
-            const datePickerOptions = {
-              mode: 'single',
-              onSelect: datePickerCallback,
-              blockedDays: [0,6]
+
+            const options = {
+              mode: 'single', // 'single' or 'range', defaults to 'single'
+              onSelect: datePickerCallback, // Callback for whenever a date or date range is selected - Required
+              blockedDays: [0, 6], // Prevent Saturday and Sunday from being selected
+              showDayNames: true,
+              textInputEnabled: true, // Show input field, calendar displays on click
+              darkMode: false,
+              language: 'en', // language ISO code, defaults to en -> ignored if usePageLanguage is true
+              usePageLanguage: true, // Looks for a lang attribute on the page, and if the language is supported, uses it
+              usePageLanguageFallback: 'en' // If usePageLanguage is true, and the page language is not supported, use this language
             };
         
-            const datePicker = new DatePicker('easy-dates-picker', datePickerOptions);
+            const datePicker = new DatePicker('easy-dates-picker', options);
             datePicker.init();
           });
         </script>
