@@ -7,7 +7,8 @@ export const inputPlaceholderTranslations = {
   nl: 'Kies een datum',
   pt: 'Escolha uma data',
   ja: '日付を選択',
-  zh: '选择日期',
+  'zh-CN': '选择日期', // Simplified Chinese
+  'zh-TW': '選擇日期', // Traditional Chinese
   ru: 'Выберите дату',
 };
 
@@ -20,7 +21,8 @@ export const ariaLabels = {
   nl: { prevMonth: 'Ga naar de vorige maand', nextMonth: 'Ga naar de volgende maand' },
   pt: { prevMonth: 'Ir para o mês anterior', nextMonth: 'Ir para o próximo mês' },
   ja: { prevMonth: '前の月へ', nextMonth: '次の月へ' },
-  zh: { prevMonth: '转到上一个月', nextMonth: '转到下一个月' },
+  'zh-CN': { prevMonth: '转到上一个月', nextMonth: '转到下一个月' }, // Simplified Chinese
+  'zh-TW': { prevMonth: '轉到上一個月', nextMonth: '轉到下一個月' }, // Traditional Chinese
   ru: { prevMonth: 'Перейти к предыдущему месяцу', nextMonth: 'Перейти к следующему месяцу' },
 };
 
@@ -33,7 +35,8 @@ export const monthNameTranslations = {
   nl: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
   pt: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
   ja: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-  zh: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+  'zh-CN': ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'], // Simplified Chinese
+  'zh-TW': ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'], // Traditional Chinese
   ru: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентяюрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
 };
 
@@ -46,7 +49,8 @@ export const dayNameTranslations = {
   nl: ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'], // Dutch
   pt: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'], // Portuguese
   ja: ['日', '月', '火', '水', '木', '金', '土'], // Japanese
-  zh: ['日', '一', '二', '三', '四', '五', '六'], // Chinese
+  'zh-CN': ['日', '一', '二', '三', '四', '五', '六'], // Simplified Chinese
+  'zh-TW': ['日', '一', '二', '三', '四', '五', '六'], // Traditional Chinese
   ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'], // Russian
 };
 
@@ -85,35 +89,72 @@ export const japaneseDaysOfMonth = {
 };
 
 export const chineseDaysOfMonth = {
-  1: '一',
-  2: '二',
-  3: '三',
-  4: '四',
-  5: '五',
-  6: '六',
-  7: '七',
-  8: '八',
-  9: '九',
-  10: '十',
-  11: '十一',
-  12: '十二',
-  13: '十三',
-  14: '十四',
-  15: '十五',
-  16: '十六',
-  17: '十七',
-  18: '十八',
-  19: '十九',
-  20: '二十',
-  21: '廿一',
-  22: '廿二',
-  23: '廿三',
-  24: '廿四',
-  25: '廿五',
-  26: '廿六',
-  27: '廿七',
-  28: '廿八',
-  29: '廿九',
-  30: '三十',
-  31: '三十一',
+  'zh-CN': {
+    // Simplified Chinese
+    1: '一',
+    2: '二',
+    3: '三',
+    4: '四',
+    5: '五',
+    6: '六',
+    7: '七',
+    8: '八',
+    9: '九',
+    10: '十',
+    11: '十一',
+    12: '十二',
+    13: '十三',
+    14: '十四',
+    15: '十五',
+    16: '十六',
+    17: '十七',
+    18: '十八',
+    19: '十九',
+    20: '二十',
+    21: '廿一',
+    22: '廿二',
+    23: '廿三',
+    24: '廿四',
+    25: '廿五',
+    26: '廿六',
+    27: '廿七',
+    28: '廿八',
+    29: '廿九',
+    30: '三十',
+    31: '三十一',
+  },
+  'zh-TW': {
+    // Traditional Chinese
+    1: '一',
+    2: '二',
+    3: '三',
+    4: '四',
+    5: '五',
+    6: '六',
+    7: '七',
+    8: '八',
+    9: '九',
+    10: '十',
+    11: '十一',
+    12: '十二',
+    13: '十三',
+    14: '十四',
+    15: '十五',
+    16: '十六',
+    17: '十七',
+    18: '十八',
+    19: '十九',
+    20: '二十',
+    21: '廿一',
+    22: '廿二',
+    23: '廿三',
+    24: '廿四',
+    25: '廿五',
+    26: '廿六',
+    27: '廿七',
+    28: '廿八',
+    29: '廿九',
+    30: '三十',
+    31: '三十一',
+  },
 };

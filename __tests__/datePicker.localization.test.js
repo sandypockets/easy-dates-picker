@@ -149,17 +149,34 @@ describe('Localization', () => {
     expect(monthDisplay).toContain('六月 2023'); // June 2023 in Japanese
   });
 
-  // Chinese
-  test('displays day names correctly in Chinese', () => {
-    datePicker.options.language = 'zh';
+  // Simplified Chinese
+  test('displays day names correctly in Simplified Chinese', () => {
+    datePicker.options.language = 'zh-CN';
     datePicker.init();
     const dayNames = datePicker.element.querySelector('.datepicker-day-names').textContent;
     expect(dayNames).toContain('日'); // Sunday in Chinese
     expect(dayNames).toContain('一'); // Monday in Chinese
   });
 
-  test('displays month names correctly in Chinese', () => {
-    datePicker.options.language = 'zh';
+  test('displays month names correctly in Simplified Chinese', () => {
+    datePicker.options.language = 'zh-CN';
+    datePicker.currentDate = new Date(2023, 7, 1); // August 1, 2023
+    datePicker.init();
+    const monthDisplay = datePicker.element.querySelector('.month-display').textContent;
+    expect(monthDisplay).toContain('八月 2023');
+  });
+
+  // Traidiional Chinese
+  test('displays day names correctly in Simplified Chinese', () => {
+    datePicker.options.language = 'zh-TW';
+    datePicker.init();
+    const dayNames = datePicker.element.querySelector('.datepicker-day-names').textContent;
+    expect(dayNames).toContain('日'); // Sunday in Chinese
+    expect(dayNames).toContain('一'); // Monday in Chinese
+  });
+
+  test('displays month names correctly in Simplified Chinese', () => {
+    datePicker.options.language = 'zh-TW';
     datePicker.currentDate = new Date(2023, 7, 1); // August 1, 2023
     datePicker.init();
     const monthDisplay = datePicker.element.querySelector('.month-display').textContent;

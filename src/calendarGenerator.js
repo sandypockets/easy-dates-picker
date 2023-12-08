@@ -45,8 +45,8 @@ export function generateDayCell(year, month, day, isCurrentMonth, isDateSelected
 
   if (options.language === 'ja') {
     dayDisplay = japaneseDaysOfMonth[day];
-  } else if (options.language === 'zh') {
-    dayDisplay = chineseDaysOfMonth[day];
+  } else if (options.language === 'zh-CN' || options.language === 'zh-TW') {
+    dayDisplay = chineseDaysOfMonth[options.language][day];
   }
 
   let className = isCurrentMonth ? 'datepicker-day current-month' : 'datepicker-day';
