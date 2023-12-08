@@ -30,6 +30,13 @@ export default function DatePicker(elementId, options) {
     this.render();
     attachEventListeners(this.element, this.changeMonth.bind(this), this.handleDayClick.bind(this));
   };
+  this.localizedDate = function (date, locale) {
+    return date.toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
 
   this.render = function () {
     this.element.innerHTML = '';
@@ -42,11 +49,11 @@ export default function DatePicker(elementId, options) {
 
     if (this.selectedStartDate) {
       if (this.options.mode === 'single') {
-        input.value = this.selectedStartDate.toDateString();
+        input.value = this.localizedDate(this.selectedStartDate, this.options.language);
       } else if (this.options.mode === 'range') {
-        let inputValue = this.selectedStartDate.toDateString();
+        let inputValue = this.localizedDate(this.selectedStartDate, this.options.language);
         if (this.selectedEndDate) {
-          inputValue += ` - ${this.selectedEndDate.toDateString()}`;
+          inputValue += ` - ${this.localizedDate(this.selectedEndDate, this.options.language)}`;
         }
         input.value = inputValue;
       }

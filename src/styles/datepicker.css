@@ -35,3 +35,33 @@
 .datepicker-day > span {
   display: block;
 }
+
+.ja .datepicker-calendar-container {
+  height: 385px;
+}
+
+.ja .datepicker-day {
+  cursor: pointer;
+  height: 50px;
+  font-size: smaller;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0;
+}
+
+.zh-CN .datepicker-calendar-container,
+.zh-TW .datepicker-calendar-container {
+  height: 385px;
+}
+
+.zh-CN .datepicker-day,
+.zh-TW .datepicker-day {
+  cursor: pointer;
+  height: 50px;
+  font-size: smaller;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0;
+}

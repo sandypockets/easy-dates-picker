@@ -4,7 +4,7 @@ import { ariaLabels } from './localization';
 
 export function generateCalendarContainer(currentDate, isDateSelected, isDateInRange, options) {
   const container = document.createElement('div');
-  container.className = 'datepicker-calendar-container';
+  container.className = `datepicker-calendar-container ${options?.language}`;
   container.style.display = options.textInputEnabled ? 'none' : 'block';
   container.innerHTML = `
     <div class="datepicker-header">
