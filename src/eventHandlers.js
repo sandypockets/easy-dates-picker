@@ -28,10 +28,7 @@ export function attachEventListeners(element, changeMonth, handleDayClick) {
     }
   };
   document.listener = event => {
-    if (
-      !calendarContainer.contains(event.target) &&
-      !element.querySelector('.datepicker-input').contains(event.target)
-    ) {
+    if (!calendarContainer.contains(event.target) && !element.querySelector('.datepicker-input').contains(event.target)) {
       calendarContainer.style.display = 'none';
     }
   };

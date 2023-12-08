@@ -1,19 +1,7 @@
-export function getMonthName(monthIndex) {
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  return monthNames[monthIndex];
+import { monthNameTranslations } from './localization';
+
+export function getMonthName(monthIndex, language) {
+  return monthNameTranslations[language][monthIndex];
 }
 
 export function isLeapYear(year) {

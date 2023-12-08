@@ -17,6 +17,7 @@ export default function DatePicker(elementId, options) {
     textInputEnabled: options?.textInputEnabled ?? false,
     textInputPlaceholder: options?.textInputPlaceholder ?? 'Choose a date',
     darkMode: options?.darkMode ?? false,
+    language: options?.language ?? 'en',
   };
   this.init = function () {
     if (this.options.darkMode) this.element.classList.add('dark');
@@ -77,12 +78,7 @@ export default function DatePicker(elementId, options) {
   };
 
   this.isDateInRange = function (date) {
-    return (
-      this.selectedStartDate &&
-      this.selectedEndDate &&
-      date > this.selectedStartDate &&
-      date < this.selectedEndDate
-    );
+    return this.selectedStartDate && this.selectedEndDate && date > this.selectedStartDate && date < this.selectedEndDate;
   };
 
   this.handleDayClick = function (day, month) {
@@ -116,12 +112,9 @@ export default function DatePicker(elementId, options) {
         if (clickedDate > this.selectedStartDate) {
           this.selectedEndDate = clickedDate;
           // Update the input only when both dates are selected
-          this.element.querySelector('.datepicker-input').value =
-            `${this.selectedStartDate.toDateString()} ${
-              this.selectedEndDate.toDateString() !== undefined
-                ? '- ' + this.selectedEndDate.toDateString()
-                : ''
-            }`;
+          this.element.querySelector('.datepicker-input').value = `${this.selectedStartDate.toDateString()} ${
+            this.selectedEndDate.toDateString() !== undefined ? '- ' + this.selectedEndDate.toDateString() : ''
+          }`;
           this.triggerSelectCallback();
           this.render();
           // Close the calendar after selecting the end date

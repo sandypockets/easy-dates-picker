@@ -121,12 +121,12 @@ describe('DatePicker', () => {
       expect(datePicker.selectedStartDate).toEqual(initialSelectedDate);
     });
 
-    test('re-renders correctly after changing month', () => {
+    test('re-renders correctly after changing month in English', () => {
       const initialMonth = datePicker.currentDate.getMonth();
       datePicker.changeMonth(1);
       const newMonth = datePicker.currentDate.getMonth();
       expect(newMonth).not.toBe(initialMonth);
-      expect(datePicker.element.querySelector('.month-display').textContent).toContain(getMonthName(newMonth));
+      expect(datePicker.element.querySelector('.month-display').textContent).toContain(getMonthName(newMonth, 'en'));
     });
 
     test('resets end date in range mode on new start date selection', () => {

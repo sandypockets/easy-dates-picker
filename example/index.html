@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Easy Dates Picker Demo</title>
     <link rel="stylesheet" href="../dist/datepicker.css" />
   </head>
@@ -11,12 +13,7 @@
       document.addEventListener('DOMContentLoaded', function () {
         function datePickerCallback(startDate, endDate) {
           if (endDate) {
-            console.log(
-              'Date Range Selected:',
-              startDate.toDateString(),
-              'to',
-              endDate.toDateString()
-            );
+            console.log('Date Range Selected:', startDate.toDateString(), 'to', endDate.toDateString());
           } else {
             console.log('Date Selected:', startDate.toDateString());
           }
@@ -29,6 +26,7 @@
           showDayNames: true,
           textInputEnabled: true, // Show input field, calendar displays on click
           darkMode: false,
+          language: 'ru', // language ISO code, defaults to en
         };
 
         const datePicker = new DatePicker('easy-dates-picker', options);

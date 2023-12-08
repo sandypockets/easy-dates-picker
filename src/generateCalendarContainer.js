@@ -8,12 +8,10 @@ export function generateCalendarContainer(currentDate, isDateSelected, isDateInR
   container.innerHTML = `
     <div class="datepicker-header">
       <button class="prev-month">&lt;</button>
-      <span class="month-display">${getMonthName(
-        currentDate.getMonth()
-      )} ${currentDate.getFullYear()}</span>
+      <span class="month-display">${getMonthName(currentDate.getMonth(), options.language)} ${currentDate.getFullYear()}</span>
       <button class="next-month">&gt;</button>
     </div>
-    ${options.showDayNames ? generateDayNames() : ''}
+    ${options.showDayNames ? generateDayNames(options.language) : ''}
     <div class="datepicker-days">
       ${generateCalendar(currentDate, isDateSelected, isDateInRange, options)}
     </div>
