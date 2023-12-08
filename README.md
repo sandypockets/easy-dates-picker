@@ -9,15 +9,16 @@
 
 Is this the right library for me?
 
-- [x] Your project does not use a virtual DOM.
-- [x] You need a date picker with zero external dependencies.
-- [x] You're looking for a library that offers both single and range date selection.
-- [x] Customization is key for your project, and you require a date picker that can be easily styled and configured.
-- [x] Accessibility and cross-browser compatibility are important for your project.
-- [x] You need a date picker that's fast to set up.
+- You need a date picker with zero external dependencies.
+- You need both single and/or range date selection.
+- You need a localized date picker with translations included .
+- Accessibility and cross-browser compatibility are important for your project.
+- You need a date picker that can be easily styled beyond the defaults.
+- Your project does not use a virtual DOM.
+- You need a date picker that's lightning fast to set up.
 
+## Getting started
 
-## Usage
 ### Package manager
 
 ```bash
@@ -36,7 +37,59 @@ import DatePicker from 'easy-dates-picker';
 <script src="https://cdn.jsdelivr.net/npm/easy-dates-picker/dist/datepicker.bundle.js"></script>
 ```
 
-Example implementation with JS Deliver
+### Set up
+When creating a new Date Picker, the picker accepts two arguments:
+1. An element ID
+2. An `options` object
+
+The element ID should correspond to an empty div in your project. This is where the Date Picker will mount. 
+
+#### Options
+The `options` object is used to pass additional arguments to the picker on initialization. Below is an example of an `options` object that will be initialized with the picker. 
+
+```javascript
+const options = {
+  mode: 'single', // 'single' or 'range'
+  onSelect: yourDatePickerCallback, // Callback triggered a date or date range is selected
+  blockedDays: [], // An array of week day indexes that won't be selectable (0=sunday, 1=monday, etc)
+  showDayNames: true, // Display the day name at the top of the calendar
+  textInputEnabled: true, // Display an input field with the selected date. The calendar becomes visible when clicking the input
+  darkMode: false, // Use light or dark colour scheme
+  language: 'en', // language ISO code, defaults to en
+};
+```
+
+Of these options, only `onSelect` is required. The others will fallback to defaults if not provided. 
+
+#### `onSelect` callback
+The `options` object requires that you provide a callback function. The callback will run when the user picks a new date. The callback has access to `startDate` and (if using a range) `endDate`. 
+
+Below is an example of a callback to log the `startDate` and `endDate` to the console when they change. 
+
+```javascript
+function yourCustomCallbackFunction(startDate, endDate) {
+  console.log('Start date selected:', startDate.toDateString());
+  console.log('End date selected:', endDate.toDateString());
+}
+```
+
+And the callback function is passed to the `onSelect` property in the `options`.
+
+```javascript
+const options = {
+  mode: 'single',
+  onSelect: yourCustomCallbackFunction, // Callback triggered a date or date range is selected
+};
+```
+
+Then use your element ID from the earlier steps with your new `options` object to initialize the Date Picker.
+
+```javascript
+const datePicker = new DatePicker('your-element-id', options);
+datePicker.init();
+```
+
+#### Example implementation with JS Deliver
 
 ```html
 <!DOCTYPE html>
@@ -65,13 +118,12 @@ Example implementation with JS Deliver
             }
         
             const datePickerOptions = {
-              mode: 'range', // 'range' or 'single'
+              mode: 'single',
               onSelect: datePickerCallback,
               blockedDays: [0,6]
             };
         
             const datePicker = new DatePicker('easy-dates-picker', datePickerOptions);
-        
             datePicker.init();
           });
         </script>
