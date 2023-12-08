@@ -1,6 +1,6 @@
 {
   "name": "easy-dates-picker",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "A super lightweight vanilla JS date picker",
   "main": "dist/datepicker.bundle.js",
   "files": [
@@ -10,7 +10,7 @@
     "build": "webpack",
     "test": "jest",
     "prettier": "prettier src/ --write && prettier example --write",
-    "prepare": "npm run prettier && npm run build && git status"
+    "prepare": "npm run prettier && npm run test && npm run build && git status"
   },
   "jest": {
     "moduleNameMapper": {
