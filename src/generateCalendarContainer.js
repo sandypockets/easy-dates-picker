@@ -1,5 +1,6 @@
 import { getMonthName } from './utils';
 import { generateDayNames, generateCalendar } from './calendarGenerator';
+import { ariaLabels } from './localization';
 
 export function generateCalendarContainer(currentDate, isDateSelected, isDateInRange, options) {
   const container = document.createElement('div');
@@ -7,9 +8,9 @@ export function generateCalendarContainer(currentDate, isDateSelected, isDateInR
   container.style.display = options.textInputEnabled ? 'none' : 'block';
   container.innerHTML = `
     <div class="datepicker-header">
-      <button class="prev-month">&lt;</button>
+      <button aria-label="${ariaLabels[options.language]['prevMonth']}" class="prev-month">&lt;</button>
       <span class="month-display">${getMonthName(currentDate.getMonth(), options.language)} ${currentDate.getFullYear()}</span>
-      <button class="next-month">&gt;</button>
+      <button aria-label="${ariaLabels[options.language]['nextMonth']}" class="next-month">&gt;</button>
     </div>
     ${options.showDayNames ? generateDayNames(options.language) : ''}
     <div class="datepicker-days">

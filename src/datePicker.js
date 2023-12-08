@@ -2,6 +2,7 @@ import './styles/datepicker.css';
 import { attachEventListeners } from './eventHandlers';
 import { generateCalendarContainer } from './generateCalendarContainer';
 import currentDates from './currentDates';
+import { inputPlaceholderTranslations } from './localization';
 
 export default function DatePicker(elementId, options) {
   this.element = document.getElementById(elementId);
@@ -15,9 +16,9 @@ export default function DatePicker(elementId, options) {
     blockedDays: options?.blockedDays ?? [],
     showDayNames: options?.showDayNames ?? true,
     textInputEnabled: options?.textInputEnabled ?? false,
-    textInputPlaceholder: options?.textInputPlaceholder ?? 'Choose a date',
     darkMode: options?.darkMode ?? false,
     language: options?.language ?? 'en',
+    textInputPlaceholder: options?.textInputPlaceholder ?? inputPlaceholderTranslations[options?.language ?? 'en'],
   };
   this.init = function () {
     if (this.options.darkMode) this.element.classList.add('dark');

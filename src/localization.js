@@ -1,3 +1,29 @@
+export const inputPlaceholderTranslations = {
+  en: 'Choose a date',
+  fr: 'Choisissez une date',
+  es: 'Elige una fecha',
+  de: 'Wählen Sie ein Datum',
+  it: 'Scegli una data',
+  nl: 'Kies een datum',
+  pt: 'Escolha uma data',
+  ja: '日付を選択',
+  zh: '选择日期',
+  ru: 'Выберите дату',
+};
+
+export const ariaLabels = {
+  en: { prevMonth: 'Go to previous month', nextMonth: 'Go to next month' },
+  fr: { prevMonth: 'Aller au mois précédent', nextMonth: 'Aller au mois suivant' },
+  es: { prevMonth: 'Ir al mes anterior', nextMonth: 'Ir al siguiente mes' },
+  de: { prevMonth: 'Gehe zum vorherigen Monat', nextMonth: 'Gehe zum nächsten Monat' },
+  it: { prevMonth: 'Vai al mese precedente', nextMonth: 'Vai al mese successivo' },
+  nl: { prevMonth: 'Ga naar de vorige maand', nextMonth: 'Ga naar de volgende maand' },
+  pt: { prevMonth: 'Ir para o mês anterior', nextMonth: 'Ir para o próximo mês' },
+  ja: { prevMonth: '前の月へ', nextMonth: '次の月へ' },
+  zh: { prevMonth: '转到上一个月', nextMonth: '转到下一个月' },
+  ru: { prevMonth: 'Перейти к предыдущему месяцу', nextMonth: 'Перейти к следующему месяцу' },
+};
+
 export const monthNameTranslations = {
   en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   fr: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
