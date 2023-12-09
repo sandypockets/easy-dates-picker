@@ -1,17 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import 'lightmode.css';
 @import 'darkmode.css';
+@import 'locales.css';
+
+.datepicker-input {
+  display: inline-block;
+  border: 1px solid #ddd;
+  height: 20px;
+  padding: 3px 7px;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+}
 
 .datepicker-calendar-container {
-  border: 1px solid #ddd;
   padding: 10px;
+  margin-top: 1px;
   width: 275px;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .datepicker-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 0 10px 0;
 }
 
 .datepicker-day {
@@ -25,6 +40,10 @@
   margin: 0 0 5px 5px;
 }
 
+.datepicker-day > span {
+  display: block;
+}
+
 .datepicker-week,
 .datepicker-day-names {
   display: grid;
@@ -32,36 +51,20 @@
   text-align: center;
 }
 
-.datepicker-day > span {
-  display: block;
+.datepicker-day-names {
+  border-radius: 5px;
+  margin: 0 3px 5px;
+  padding: 5px 0;
 }
 
-.ja .datepicker-calendar-container {
-  height: 385px;
+.datepicker-day.blocked {
+  cursor: not-allowed;
 }
 
-.ja .datepicker-day {
-  cursor: pointer;
-  height: 50px;
-  font-size: smaller;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0;
-}
-
-.zh-CN .datepicker-calendar-container,
-.zh-TW .datepicker-calendar-container {
-  height: 385px;
-}
-
-.zh-CN .datepicker-day,
-.zh-TW .datepicker-day {
-  cursor: pointer;
-  height: 50px;
-  font-size: smaller;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0;
+button.prev-month,
+button.next-month {
+  border-radius: 5px;
+  border: none;
+  padding: 5px 12px;
+  transition: all 100ms ease-in-out;
 }

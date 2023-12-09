@@ -19,18 +19,33 @@
 
 .dark .datepicker-day.selected,
 .dark .datepicker-day.in-range {
-  background-color: #1e8e3e;
+  background-color: #3a5fd8;
 }
 
 .dark .datepicker-day.in-range {
-  background-color: #679267;
+  background-color: #5675d8;
 }
 
 .dark .datepicker-day.blocked {
   color: #aaa;
-  background-color: #2a2a2a;
+  background-color: #1c1c1c;
+}
+
+.dark .datepicker-day-names {
+  background-color: #3a5fd8;
 }
 
 .dark .datepicker-day-names > div {
   color: #ccc;
+}
+
+.dark button.prev-month,
+.dark button.next-month {
+  background-color: #3a5fd8;
+  color: #ccc;
+}
+
+.dark button.prev-month:hover,
+.dark button.next-month:hover {
+  background-color: #2e4cae;
 }

@@ -1,0 +1,29 @@
+.ja .datepicker-calendar-container {
+  height: 385px;
+}
+
+.ja .datepicker-day {
+  cursor: pointer;
+  height: 50px;
+  font-size: smaller;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.zh-CN .datepicker-calendar-container,
+.zh-TW .datepicker-calendar-container {
+  height: 385px;
+}
+
+.zh-CN .datepicker-day,
+.zh-TW .datepicker-day {
+  cursor: pointer;
+  height: 50px;
+  font-size: smaller;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}

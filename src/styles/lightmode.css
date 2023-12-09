@@ -1,3 +1,10 @@
+.datepicker-calendar-container {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 275px;
+  border-radius: 5px;
+}
+
 .datepicker-day {
   background-color: #f0f0f0;
 }
@@ -21,6 +28,15 @@
   background-color: #f8f8f8;
 }
 
+.datepicker-day-names {
+  background-color: #e0e0e0;
+}
+
 .datepicker-day-names > div {
   color: black;
+}
+
+button.prev-month:hover,
+button.next-month:hover {
+  background-color: #e0e0e0;
 }
