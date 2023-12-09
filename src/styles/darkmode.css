@@ -32,7 +32,7 @@
 }
 
 .dark .datepicker-day-names {
-  background-color: #3a5fd8;
+  background-color: #4a4c52;
 }
 
 .dark .datepicker-day-names > div {
@@ -41,7 +41,7 @@
 
 .dark button.prev-month,
 .dark button.next-month {
-  background-color: #3a5fd8;
+  background-color: #4a4c52;
   color: #ccc;
 }
 

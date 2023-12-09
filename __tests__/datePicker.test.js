@@ -1,10 +1,10 @@
 import DatePicker from "../src/datePicker";
 
 jest.useFakeTimers();
+let datePicker;
+const containerId = 'test-container';
 
 describe('DatePicker', () => {
-  let datePicker;
-  const containerId = 'test-container';
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
@@ -62,6 +62,39 @@ describe('DatePicker', () => {
       datePicker.render();
       // Check if the currentDate has moved to the next month
       expect(datePicker.currentDate.getMonth()).toBe(6); // July
+    });
+  });
+
+
+  describe('Corner Style', () => {
+    test('applies round style by default', () => {
+      datePicker = new DatePicker(containerId, {});
+      datePicker.init();
+      expect(document.getElementById(containerId).classList.contains('round')).toBe(true);
+    });
+
+    test('applies round style when specified', () => {
+      datePicker = new DatePicker(containerId, { cornerStyle: 'round' });
+      datePicker.init();
+      expect(document.getElementById(containerId).classList.contains('round')).toBe(true);
+    });
+
+    test('applies square style when specified', () => {
+      datePicker = new DatePicker(containerId, { cornerStyle: 'square' });
+      datePicker.init();
+      expect(document.getElementById(containerId).classList.contains('square')).toBe(true);
+    });
+
+    test('does not apply round style when square is specified', () => {
+      datePicker = new DatePicker(containerId, { cornerStyle: 'square' });
+      datePicker.init();
+      expect(document.getElementById(containerId).classList.contains('round')).toBe(false);
+    });
+
+    test('does not apply square style when round is specified', () => {
+      datePicker = new DatePicker(containerId, { cornerStyle: 'round' });
+      datePicker.init();
+      expect(document.getElementById(containerId).classList.contains('square')).toBe(false);
     });
   });
 });

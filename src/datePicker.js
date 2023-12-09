@@ -24,9 +24,19 @@ export default function DatePicker(elementId, options) {
     textInputPlaceholder:
       options?.textInputPlaceholder ??
       inputPlaceholderTranslations[options?.usePageLanguage ? getPageLanguage() : options?.language ?? 'en'],
+    cornerStyle: options?.cornerStyle ?? 'round',
   };
   this.init = function () {
     if (this.options.darkMode) this.element.classList.add('dark');
+    if (this.options.cornerStyle === 'round') {
+      this.element.classList.add('round');
+      this.element.classList.remove('square');
+    }
+    if (this.options.cornerStyle === 'square') {
+      this.element.classList.add('square');
+      this.element.classList.remove('round');
+    }
+
     this.calendarContainer = generateCalendarContainer(
       this.currentDate,
       this.isDateSelected.bind(this),

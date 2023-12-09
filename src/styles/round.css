@@ -1,0 +1,12 @@
+.round .datepicker-day {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.round button.prev-month,
+.round button.next-month {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
