@@ -2,7 +2,8 @@
   height: 385px;
 }
 
-.ja .datepicker-day {
+.ja .datepicker-day,
+.ko .datepicker-day {
   cursor: pointer;
   height: 50px;
   font-size: smaller;
@@ -18,8 +19,8 @@
 }
 
 .zh-CN .datepicker-day,
-.zh-TW .datepicker-day {
-  cursor: pointer;
+.zh-TW .datepicker-day,
+.ko .datepicker-day {
   height: 50px;
   font-size: smaller;
   display: flex;
