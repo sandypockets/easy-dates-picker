@@ -89,6 +89,9 @@ datePicker.init();
 
 #### Example implementation with JS Deliver
 
+<details>
+<summary>Click to view example code</summary>
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -135,4 +138,71 @@ datePicker.init();
         </script>
     </body>
 </html>
+```
+</details>
+
+## Localization
+The `easy-dates-picker` is equipped with robust localization capabilities, supporting a wide range of languages to accommodate global audiences. This feature ensures that users experience the Date Picker in their preferred language, with appropriate formats for dates, month names, day names, and interface labels.
+
+### Supported Languages
+The Date Picker supports the following languages, each represented by its respective ISO language code.
+
+<details>
+<summary>View all supported languages</summary>
+
+- Bulgarian (`bg-BG`)
+- Czech (`cs`)
+- Danish (`da`)
+- German (`de`)
+- Greek (`el`)
+- English (`en`)
+- Spanish (`es`)
+- Finnish (`fi`)
+- French (`fr`)
+- Croatian (`hr-HR`)
+- Hungarian (`hu`)
+- Indonesian (`id`)
+- Italian (`it`)
+- Japanese (`ja`)
+- Korean (`ko`)
+- Lithuanian (`lt-LT`)
+- Dutch (`nl`)
+- Norwegian Bokmål (`nb`)
+- Polish (`pl`)
+- Brazilian Portuguese (`pt-BR`)
+- European Portuguese (`pt-PT`)
+- Romanian (`ro-RO`)
+- Russian (`ru`)
+- Slovak (`sk-SK`)
+- Slovenian (`sl-SL`)
+- Swedish (`sv`)
+- Thai (`th`)
+- Turkish (`tr`)
+- Vietnamese (`vi`)
+- Chinese (Simplified) (`zh-CN`)
+- Chinese (Traditional) (`zh-TW`)
+
+
+</details>
+
+### Implementing Localization
+There are various ways to localize the Date Picker. 
+
+#### Single language
+If you only need one language, then you can set the `language` option in your `options` object to your desired language's ISO code.
+
+```javascript
+const options = {
+  language: 'es', // set to Spanish
+};
+```
+
+#### Automatic localization
+If you want the Date Picker to adapt to the language of the page it's mounted on, then you can set the `usePageLanguage` option in your options object to `true`. You do not need to set a `language`, since the page language will be detected to match the UI. However it is recommended that you use the `usePageLanguageFallback` to set a fallback language in case the page language is not supported, or was set incorrectly. 
+
+```javascript
+const options = {
+  usePageLanguage: true,
+  usePageLanguageFallback: 'en' // Fallback to English
+};
 ```
