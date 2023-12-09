@@ -39,7 +39,9 @@ const options = {
   darkMode: false, // Use light or dark colour scheme
   language: 'en', // language ISO code, defaults to en -> ignored if usePageLanguage is true
   usePageLanguage: true, // Looks for a lang attribute on the page, and if the language is supported, uses it
-  usePageLanguageFallback: 'en' // If usePageLanguage is true, and the page language is not supported, use this language
+  usePageLanguageFallback: 'en', // If usePageLanguage is true, and the page language is not supported, use this language
+  cornerStyle: 'round', // Square or round
+  selectPastDatesEnabled: true, // Allow dates in the past to be selected
 };
 ```
 
@@ -55,7 +57,9 @@ const options = {
   darkMode: false,
   language: 'en',
   usePageLanguage: false,
-  usePageLanguageFallback: 'en'
+  usePageLanguageFallback: 'en',
+  cornerStyle: 'round',
+  selectPastDatesEnabled: false,
 };
 ```
 
@@ -130,6 +134,7 @@ datePicker.init();
               language: 'en', // language ISO code, defaults to en -> ignored if usePageLanguage is true
               usePageLanguage: true, // Looks for a lang attribute on the page, and if the language is supported, uses it
               usePageLanguageFallback: 'en' // If usePageLanguage is true, and the page language is not supported, use this language
+              // rest of your options, if applicable
             };
         
             const datePicker = new DatePicker('easy-dates-picker', options);
@@ -182,11 +187,10 @@ The Date Picker supports the following languages, each represented by its respec
 - Chinese (Simplified) (`zh-CN`)
 - Chinese (Traditional) (`zh-TW`)
 
-
 </details>
 
 ### Implementing Localization
-There are various ways to localize the Date Picker. 
+The Date Picker was built from the beginning with localization in mind. Choose a single predefined language, or let the picker detect the language of the page it's rendered on. 
 
 #### Single language
 If you only need one language, then you can set the `language` option in your `options` object to your desired language's ISO code.
@@ -197,6 +201,8 @@ const options = {
 };
 ```
 
+If you do not provide a `language`, it defaults to English.
+
 #### Automatic localization
 If you want the Date Picker to adapt to the language of the page it's mounted on, then you can set the `usePageLanguage` option in your options object to `true`. You do not need to set a `language`, since the page language will be detected to match the UI. However it is recommended that you use the `usePageLanguageFallback` to set a fallback language in case the page language is not supported, or was set incorrectly. 
 
@@ -206,3 +212,5 @@ const options = {
   usePageLanguageFallback: 'en' // Fallback to English
 };
 ```
+
+If you do not provide a fallback language, English will be used as the fallback by default.
