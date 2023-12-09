@@ -39,6 +39,10 @@
   margin: 0 0 5px 5px;
 }
 
+.datepicker-day.past-date {
+  cursor: not-allowed;
+}
+
 .datepicker-day > span {
   display: block;
 }

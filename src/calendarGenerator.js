@@ -9,6 +9,7 @@ export function generateDayNames(language) {
 export function generateCalendar(currentDate, isDateSelected, isDateInRange, options) {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
+  const currentDay = currentDate.getDate();
 
   const firstDayOfMonth = new Date(year, month, 1);
   const lastDayOfLastMonth = new Date(year, month, 0).getDate();
@@ -61,6 +62,16 @@ export function generateDayCell(year, month, day, isCurrentMonth, isDateSelected
     className += ' selected';
   } else if (isCurrentMonth && isDateInRange(date)) {
     className += ' in-range';
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set to start of today for fair comparison
+
+  if (date.getTime() === today.getTime()) {
+    className += ' today';
+  }
+  if (!options.selectPastDatesEnabled && date < today) {
+    className += ' past-date';
   }
 
   return `<div tabindex="0" class="${className}" data-day="${day}" data-month="${month}"><span>${dayDisplay}</span></div>`;

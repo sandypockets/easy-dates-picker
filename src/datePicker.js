@@ -25,6 +25,7 @@ export default function DatePicker(elementId, options) {
       options?.textInputPlaceholder ??
       inputPlaceholderTranslations[options?.usePageLanguage ? getPageLanguage() : options?.language ?? 'en'],
     cornerStyle: options?.cornerStyle ?? 'round',
+    selectPastDatesEnabled: options?.selectPastDatesEnabled ?? false,
   };
   this.init = function () {
     if (this.options.darkMode) this.element.classList.add('dark');
@@ -141,6 +142,17 @@ export default function DatePicker(elementId, options) {
     }
 
     const clickedDate = new Date(year, month, day);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    console.log('TODAY: ', today);
+    console.log('CLICKED DATE: ', clickedDate);
+
+    if (!this.options.selectPastDatesEnabled && clickedDate < today) {
+      console.log('CLICK PREVENTED');
+      return;
+    }
 
     if (this.options.mode === 'single') {
       this.selectedStartDate = clickedDate;
