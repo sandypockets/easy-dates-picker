@@ -1,18 +1,17 @@
-import DatePicker from "../src/datePicker";
+import DatePicker from '../src/datePicker';
 
 jest.useFakeTimers();
 let datePicker;
 const containerId = 'test-container';
 
 describe('DatePicker', () => {
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -32,7 +31,7 @@ describe('DatePicker', () => {
         mode: 'single',
         onSelect: null,
         blockedDays: [],
-        showDayNames: true
+        showDayNames: true,
       });
     });
 
@@ -64,7 +63,6 @@ describe('DatePicker', () => {
       expect(datePicker.currentDate.getMonth()).toBe(6); // July
     });
   });
-
 
   describe('Corner Style', () => {
     test('applies round style by default', () => {

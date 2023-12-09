@@ -1,5 +1,5 @@
-import DatePicker from '../src/datePicker'
-import { getMonthName } from '../src/utils'
+import DatePicker from '../src/datePicker';
+import { getMonthName } from '../src/utils';
 
 describe('Interactions and basic functionality', () => {
   let datePicker;
@@ -11,7 +11,8 @@ describe('Interactions and basic functionality', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
+      selectPastDatesEnabled: true,
     });
     datePicker.init();
   });
@@ -81,7 +82,7 @@ describe('Interactions and basic functionality', () => {
     datePicker.selectedEndDate = new Date(2023, 5, 15);
     const newStartDate = new Date(2023, 5, 20);
     datePicker.handleDayClick(newStartDate.getDate(), newStartDate.getMonth());
-    expect(datePicker.selectedStartDate).toEqual(newStartDate);
+    expect(datePicker.selectedStartDate.toString()).toMatch(newStartDate.toString());
     expect(datePicker.selectedEndDate).toBeNull();
   });
 });

@@ -1,4 +1,4 @@
-import DatePicker from "../src/datePicker";
+import DatePicker from '../src/datePicker';
 
 describe('Dark/light mode UI', () => {
   let datePicker;
@@ -12,7 +12,7 @@ describe('Dark/light mode UI', () => {
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
-      darkMode: true
+      darkMode: true,
     });
     datePicker.init();
 
@@ -24,7 +24,7 @@ describe('Dark/light mode UI', () => {
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
-      darkMode: false
+      darkMode: false,
     });
     datePicker.init();
 

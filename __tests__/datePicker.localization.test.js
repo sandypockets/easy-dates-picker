@@ -1,4 +1,4 @@
-import DatePicker from "../src/datePicker";
+import DatePicker from '../src/datePicker';
 
 jest.useFakeTimers();
 
@@ -6,14 +6,13 @@ const containerId = 'test-container';
 let datePicker;
 
 describe('Localization', () => {
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -185,7 +184,6 @@ describe('Localization', () => {
   });
 });
 
-
 describe('Localization for Bulgarian (bg-BG)', () => {
   let datePicker;
 
@@ -195,7 +193,7 @@ describe('Localization for Bulgarian (bg-BG)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -220,14 +218,13 @@ describe('Localization for Bulgarian (bg-BG)', () => {
 describe('Localization for Czech (cs)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -252,14 +249,13 @@ describe('Localization for Czech (cs)', () => {
 describe('Localization for Danish (da)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -284,14 +280,13 @@ describe('Localization for Danish (da)', () => {
 describe('Localization for Greek (el)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -313,10 +308,8 @@ describe('Localization for Greek (el)', () => {
   });
 });
 
-
 describe('Localization for Finnish (fi)', () => {
   let datePicker;
-
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
@@ -324,7 +317,7 @@ describe('Localization for Finnish (fi)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -346,10 +339,8 @@ describe('Localization for Finnish (fi)', () => {
   });
 });
 
-
 describe('Localization for Croatian (hr-HR)', () => {
   let datePicker;
-
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
@@ -357,7 +348,7 @@ describe('Localization for Croatian (hr-HR)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -379,10 +370,8 @@ describe('Localization for Croatian (hr-HR)', () => {
   });
 });
 
-
 describe('Localization for Hungarian (hu)', () => {
   let datePicker;
-
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
@@ -390,7 +379,7 @@ describe('Localization for Hungarian (hu)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -412,10 +401,8 @@ describe('Localization for Hungarian (hu)', () => {
   });
 });
 
-
 describe('Localization for Indonesian (id)', () => {
   let datePicker;
-
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
@@ -423,7 +410,7 @@ describe('Localization for Indonesian (id)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -445,10 +432,8 @@ describe('Localization for Indonesian (id)', () => {
   });
 });
 
-
 describe('Localization for Korean (ko)', () => {
   let datePicker;
-
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
@@ -456,7 +441,7 @@ describe('Localization for Korean (ko)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -478,10 +463,8 @@ describe('Localization for Korean (ko)', () => {
   });
 });
 
-
 describe('Localization for Lithuanian (lt-LT)', () => {
   let datePicker;
-
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
@@ -489,7 +472,7 @@ describe('Localization for Lithuanian (lt-LT)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -511,10 +494,8 @@ describe('Localization for Lithuanian (lt-LT)', () => {
   });
 });
 
-
 describe('Localization for Norwegian Bokmål (nb)', () => {
   let datePicker;
-
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
@@ -522,7 +503,7 @@ describe('Localization for Norwegian Bokmål (nb)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -544,10 +525,8 @@ describe('Localization for Norwegian Bokmål (nb)', () => {
   });
 });
 
-
 describe('Localization for Polish (pl)', () => {
   let datePicker;
-
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
@@ -555,7 +534,7 @@ describe('Localization for Polish (pl)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -580,14 +559,13 @@ describe('Localization for Polish (pl)', () => {
 describe('Localization for Brazilian Portuguese (pt-BR)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -612,14 +590,13 @@ describe('Localization for Brazilian Portuguese (pt-BR)', () => {
 describe('Localization for European Portuguese (pt-PT)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -644,14 +621,13 @@ describe('Localization for European Portuguese (pt-PT)', () => {
 describe('Localization for Romanian (ro-RO)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -676,7 +652,6 @@ describe('Localization for Romanian (ro-RO)', () => {
 describe('Localization for Slovak (sk-SK)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
 
@@ -684,7 +659,7 @@ describe('Localization for Slovak (sk-SK)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6],
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -710,14 +685,13 @@ describe('Localization for Slovak (sk-SK)', () => {
 describe('Localization for Slovenian (sl-SL)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -742,14 +716,13 @@ describe('Localization for Slovenian (sl-SL)', () => {
 describe('Localization for Swedish (sv)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -774,14 +747,13 @@ describe('Localization for Swedish (sv)', () => {
 describe('Localization for Thai (th)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -806,14 +778,13 @@ describe('Localization for Thai (th)', () => {
 describe('Localization for Turkish (tr)', () => {
   let datePicker;
 
-
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
     datePicker = new DatePicker(containerId, {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -835,10 +806,8 @@ describe('Localization for Turkish (tr)', () => {
   });
 });
 
-
 describe('Localization for Vietnamese (vi)', () => {
   let datePicker;
-
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
@@ -846,7 +815,7 @@ describe('Localization for Vietnamese (vi)', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
@@ -868,16 +837,14 @@ describe('Localization for Vietnamese (vi)', () => {
   });
 });
 
-
 describe('Localization with Page Language', () => {
   let datePicker;
-
 
   beforeEach(() => {
     document.body.innerHTML = `<div id="${containerId}"></div>`;
   });
 
-  const setHtmlLangAttribute = (lang) => {
+  const setHtmlLangAttribute = lang => {
     document.documentElement.lang = lang;
   };
 
@@ -887,7 +854,7 @@ describe('Localization with Page Language', () => {
       datePicker = new DatePicker(containerId, {
         mode: 'single',
         onSelect: jest.fn(),
-        usePageLanguage: true
+        usePageLanguage: true,
       });
       datePicker.init();
       datePicker.currentDate = new Date(2023, 0, 1); // January 1, 2023
@@ -900,7 +867,6 @@ describe('Localization with Page Language', () => {
       expect(monthDisplay).toContain(expectedMonthName);
     });
   };
-
 
   testPageLanguageSetting('en', 'Sun', 'January 2023');
   testPageLanguageSetting('fr', 'Dim', 'Janvier 2023');
@@ -935,9 +901,7 @@ describe('Localization with Page Language', () => {
   testPageLanguageSetting('tr', 'Paz', 'Ocak 2023');
   testPageLanguageSetting('vi', 'CN', 'Tháng Một 2023');
 
-
   afterEach(() => {
     setHtmlLangAttribute('en');
   });
 });
-

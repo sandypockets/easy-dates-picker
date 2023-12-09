@@ -1,4 +1,4 @@
-import DatePicker from '../src/datePicker'
+import DatePicker from '../src/datePicker';
 
 describe('Leap year handling', () => {
   let datePicker;
@@ -10,7 +10,7 @@ describe('Leap year handling', () => {
       mode: 'single',
       onSelect: jest.fn(),
       blockedDays: [0, 6], // Sundays and Saturdays
-      showDayNames: true
+      showDayNames: true,
     });
     datePicker.init();
   });
