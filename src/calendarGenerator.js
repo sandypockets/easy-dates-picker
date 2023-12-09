@@ -1,5 +1,5 @@
 import { isLeapYear } from './utils';
-import { dayNameTranslations, chineseDaysOfMonth, japaneseDaysOfMonth } from './localization';
+import { dayNameTranslations, chineseDaysOfMonth, japaneseDaysOfMonth, koreanDaysOfMonth, thaiDaysOfMonth } from './localization';
 
 export function generateDayNames(language) {
   const dayNames = dayNameTranslations[language];
@@ -47,6 +47,10 @@ export function generateDayCell(year, month, day, isCurrentMonth, isDateSelected
     dayDisplay = japaneseDaysOfMonth[day];
   } else if (options.language === 'zh-CN' || options.language === 'zh-TW') {
     dayDisplay = chineseDaysOfMonth[options.language][day];
+  } else if (options.language === 'ko') {
+    dayDisplay = koreanDaysOfMonth[day];
+  } else if (options.language === 'th') {
+    dayDisplay = thaiDaysOfMonth[day];
   }
 
   let className = isCurrentMonth ? 'datepicker-day current-month' : 'datepicker-day';

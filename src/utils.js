@@ -9,7 +9,40 @@ export function isLeapYear(year) {
 }
 
 export function getPageLanguage(fallbackLang) {
-  const supportedLanguages = ['en', 'fr', 'es', 'de', 'it', 'nl', 'pt', 'ja', 'zh-CN', 'zh-TW', 'ru'];
+  const supportedLanguages = [
+    'en',
+    'fr',
+    'es',
+    'de',
+    'it',
+    'nl',
+    'pt',
+    'ja',
+    'zh-CN',
+    'zh-TW',
+    'ru',
+    'bg-BG',
+    'cs',
+    'da',
+    'el',
+    'fi',
+    'hr-HR',
+    'hu',
+    'id',
+    'ko',
+    'lt-LT',
+    'nb',
+    'pl',
+    'pt-BR',
+    'pt-PT',
+    'ro-RO',
+    'sk-SK',
+    'sl-SL',
+    'sv',
+    'th',
+    'tr',
+    'vi',
+  ];
   const documentPageLang = document.documentElement.lang;
   // Check if the page language is supported, if not, default to English
   return supportedLanguages.includes(documentPageLang) ? documentPageLang : fallbackLang;
