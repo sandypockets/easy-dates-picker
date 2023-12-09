@@ -27,38 +27,29 @@ export default function DatePicker(elementId, options) {
   };
   this.init = function () {
     if (this.options.darkMode) this.element.classList.add('dark');
+    this.calendarContainer = generateCalendarContainer(
+      this.currentDate,
+      this.isDateSelected.bind(this),
+      this.isDateInRange.bind(this),
+      this.options
+    );
+
+    if (this.options.textInputEnabled) {
+      this.input = document.createElement('input');
+      this.input.value = this.options.textInputPlaceholder;
+      this.input.type = 'text';
+      this.input.className = 'datepicker-input';
+      this.input.readOnly = true;
+
+      this.element.appendChild(this.input);
+    }
+
+    this.element.appendChild(this.calendarContainer);
     this.render();
     attachEventListeners(this.element, this.changeMonth.bind(this), this.handleDayClick.bind(this));
   };
-  this.localizedDate = function (date, locale) {
-    return date.toLocaleDateString(locale, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
-
   this.render = function () {
     this.element.innerHTML = '';
-
-    const input = document.createElement('input');
-    input.value = this.options.textInputPlaceholder;
-    input.type = 'text';
-    input.className = 'datepicker-input';
-    input.readOnly = true;
-
-    if (this.selectedStartDate) {
-      if (this.options.mode === 'single') {
-        input.value = this.localizedDate(this.selectedStartDate, this.options.language);
-      } else if (this.options.mode === 'range') {
-        let inputValue = this.localizedDate(this.selectedStartDate, this.options.language);
-        if (this.selectedEndDate) {
-          inputValue += ` - ${this.localizedDate(this.selectedEndDate, this.options.language)}`;
-        }
-        input.value = inputValue;
-      }
-    }
-    this.element.appendChild(input);
 
     const calendarContainer = generateCalendarContainer(
       this.currentDate,
@@ -66,23 +57,57 @@ export default function DatePicker(elementId, options) {
       this.isDateInRange.bind(this),
       this.options
     );
-    this.element.appendChild(calendarContainer);
 
     if (this.options.textInputEnabled) {
-      input.addEventListener('click', () => {
-        calendarContainer.style.display = 'block';
-      });
+      const existingInput = this.element.querySelector('.datepicker-input');
+      if (!existingInput) {
+        const input = document.createElement('input');
+        input.value = this.options.textInputPlaceholder;
+        input.type = 'text';
+        input.id = 'datepicker-input';
+        input.className = 'datepicker-input';
+        input.readOnly = true;
 
-      document.addEventListener('click', event => {
-        if (!this.element.contains(event.target)) {
-          calendarContainer.style.display = 'none';
+        if (this.selectedStartDate) {
+          if (this.options.mode === 'single') {
+            input.value = this.localizedDate(this.selectedStartDate, this.options.language);
+          } else if (this.options.mode === 'range') {
+            let inputValue = this.localizedDate(this.selectedStartDate, this.options.language);
+            if (this.selectedEndDate) {
+              inputValue += ` - ${this.localizedDate(this.selectedEndDate, this.options.language)}`;
+            }
+            input.value = inputValue;
+          }
         }
-      });
+
+        input.removeEventListener('click', input.listener);
+        input.removeEventListener('keydown', input.listener);
+        input.addEventListener('click', () => {
+          calendarContainer.style.display = 'block';
+        });
+
+        input.addEventListener('keydown', event => {
+          if (event.key === 'Enter') {
+            calendarContainer.style.display = calendarContainer.style.display === 'block' ? 'none' : 'block';
+          }
+        });
+
+        this.element.appendChild(input);
+      }
     }
+
+    this.element.appendChild(calendarContainer);
 
     attachEventListeners(this.element, this.changeMonth.bind(this), this.handleDayClick.bind(this));
   };
 
+  this.localizedDate = function (date, locale) {
+    return date.toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
   this.isDateSelected = function (date) {
     return (
       (this.selectedStartDate && this.selectedStartDate.toDateString() === date.toDateString()) ||
@@ -110,10 +135,14 @@ export default function DatePicker(elementId, options) {
     if (this.options.mode === 'single') {
       this.selectedStartDate = clickedDate;
       this.selectedEndDate = null;
-      this.element.querySelector('.datepicker-input').value = clickedDate.toDateString();
+      if (this.options.textInputEnabled) {
+        this.element.querySelector('.datepicker-input').value = clickedDate.toDateString();
+      }
       this.triggerSelectCallback();
       this.render();
-      this.element.querySelector('.datepicker-calendar-container').style.display = 'none';
+      if (options.textInputEnabled) {
+        this.element.querySelector('.datepicker-calendar-container').style.display = 'none';
+      }
     } else if (this.options.mode === 'range') {
       if (!this.selectedStartDate || this.selectedEndDate) {
         this.selectedStartDate = clickedDate;
@@ -125,13 +154,18 @@ export default function DatePicker(elementId, options) {
         if (clickedDate > this.selectedStartDate) {
           this.selectedEndDate = clickedDate;
           // Update the input only when both dates are selected
-          this.element.querySelector('.datepicker-input').value = `${this.selectedStartDate.toDateString()} ${
-            this.selectedEndDate.toDateString() !== undefined ? '- ' + this.selectedEndDate.toDateString() : ''
-          }`;
+          const input = this.element.querySelector('.datepicker-input');
+          if (input) {
+            this.element.querySelector('.datepicker-input').value = `${this.selectedStartDate.toDateString()} ${
+              this.selectedEndDate.toDateString() !== undefined ? '- ' + this.selectedEndDate.toDateString() : ''
+            }`;
+          }
           this.triggerSelectCallback();
           this.render();
           // Close the calendar after selecting the end date
-          this.element.querySelector('.datepicker-calendar-container').style.display = 'none';
+          if (options.textInputEnabled) {
+            this.element.querySelector('.datepicker-calendar-container').style.display = 'none';
+          }
         } else {
           // If the clicked date is before the start date, reset the start date
           this.selectedStartDate = clickedDate;
