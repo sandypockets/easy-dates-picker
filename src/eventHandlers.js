@@ -38,11 +38,6 @@ export function attachEventListeners(element, changeMonth, handleDayClick) {
       }
     }
   };
-  document.listener = event => {
-    if (!calendarContainer.contains(event.target) && !element.querySelector('.datepicker-input').contains(event.target)) {
-      calendarContainer.style.display = 'none';
-    }
-  };
 
   prevMonthButton.addEventListener('click', prevMonthButton.listener);
   nextMonthButton.addEventListener('click', nextMonthButton.listener);

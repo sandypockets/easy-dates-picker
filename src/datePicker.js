@@ -146,11 +146,7 @@ export default function DatePicker(elementId, options) {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    console.log('TODAY: ', today);
-    console.log('CLICKED DATE: ', clickedDate);
-
     if (!this.options.selectPastDatesEnabled && clickedDate < today) {
-      console.log('CLICK PREVENTED');
       return;
     }
 
@@ -173,7 +169,7 @@ export default function DatePicker(elementId, options) {
         // Keep the calendar open and do not update the input yet
         this.element.querySelector('.datepicker-calendar-container').style.display = 'block';
       } else if (this.selectedStartDate && !this.selectedEndDate) {
-        if (clickedDate > this.selectedStartDate) {
+        if (clickedDate.getTime() > this.selectedStartDate.getTime()) {
           this.selectedEndDate = clickedDate;
           // Update the input only when both dates are selected
           const input = this.element.querySelector('.datepicker-input');
