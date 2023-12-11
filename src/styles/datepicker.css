@@ -64,6 +64,11 @@
   cursor: not-allowed;
 }
 
+.datepicker-day.past-date,
+.datepicker-day.past-date.blocked {
+  background-color: transparent;
+}
+
 button.prev-month,
 button.next-month {
   cursor: pointer;
