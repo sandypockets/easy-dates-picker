@@ -20,6 +20,8 @@
 - Easy to style beyond the defaults
 - Lightning fast set up
 
+![examples](https://github.com/sandypockets/easy-dates-picker/blob/main/docs/examples.jpg?raw=true)
+
 ## Getting started
 The `easy-dates-picker` is as quick to set up as it is lightweight. For detailed documentation, please view the [docs](https://github.com/sandypockets/easy-dates-picker/blob/main/DOCUMENTATION.md) in the repo.
 
