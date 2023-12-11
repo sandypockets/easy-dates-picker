@@ -1,5 +1,9 @@
+## Introduction
+
+`easy-dates-picker` is a lightweight, feature-rich date selection library designed for ease of use and integration into any web project. Whether you need a simple date picker or a comprehensive range selector, `easy-dates-picker` offers a suite of functionalities that cater to various use cases. With its straightforward setup, extensive localization, and customization options, you can enhance your forms and interfaces with a user-friendly date picking experience.
+
 ## Getting started
-The Date Picker is as quick to set up as it is lightweight. Follow the directions and example below to learn how to integrate `easy-dates-picker` in your project.
+As quick to set up as it is lightweight. Follow the directions and example below to learn how to integrate `easy-dates-picker` in your project.
 
 ### Package manager
 

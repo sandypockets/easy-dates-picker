@@ -1,10 +1,32 @@
-# Contributing to Easy Dates Picker
+# Contributing to `easy-dates-picker`
 
-Thank you for considering contributing to Easy Dates Picker! Any contributions you make are **greatly appreciated**.
+Thank you for considering contributing to `easy-dates-picker`! Any contributions you make are **greatly appreciated**.
+
+## Table of Contents
+1. [Development Setup](#development-setup)
+2. [Code of Conduct](#code-of-conduct)
+3. [How Can I Contribute?](#how-can-i-contribute)
+    - [Reporting Bugs](#reporting-bugs)
+    - [Suggesting Enhancements](#suggesting-enhancements)
+    - [Your First Code Contribution](#your-first-code-contribution)
+    - [Pull Requests](#pull-requests)
+4. [Styleguides](#styleguides)
+    - [Git Commit Messages](#git-commit-messages)
+    - [CSS Styleguide](#css-styleguide)
+
+## Development Setup
+
+To set up your development environment for `easy-dates-picker`:
+
+1. Fork the repository and clone your fork to your local machine.
+2. Ensure you have Node.js and npm installed.
+3. Navigate to the cloned directory and run `npm install` to install all required dependencies.
+4. To start the development server, run `npm start`.
+5. Make changes in a new branch created from the `main` branch.
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [Easy Dates Picker Code of Conduct](https://github.com/sandypockets/easy-dates-picker/blob/main/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. 
+This project and everyone participating in it is governed by the [`easy-dates-picker` Code of Conduct](https://github.com/sandypockets/easy-dates-picker/blob/main/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. 
 
 ## How Can I Contribute?
 
@@ -15,7 +37,7 @@ Contributions are made to this repo via Issues and Pull Requests (PRs). A few ge
 
 ### Reporting Bugs
 
-This section guides you through submitting a bug report for Easy Dates Picker. Following these guidelines helps maintainers and the community understand your report, reproduce the behavior, and find related reports.
+This section guides you through submitting a bug report for `easy-dates-picker`. Following these guidelines helps maintainers and the community understand your report, reproduce the behavior, and find related reports.
 
 #### How Do I Submit A Good Bug Report?
 
@@ -30,7 +52,7 @@ Bugs are tracked as GitHub issues. Create an issue on the repository and provide
 
 ### Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion for Easy Dates Picker, including completely new features and minor improvements to existing functionality.
+This section guides you through submitting an enhancement suggestion for `easy-dates-picker`, including completely new features and minor improvements to existing functionality.
 
 #### How Do I Submit A Good Enhancement Suggestion?
 
@@ -40,13 +62,13 @@ Enhancement suggestions are tracked as GitHub issues. Create an issue on the rep
 - **Provide a step-by-step description of the suggested enhancement** in as many details as possible.
 - **Provide specific examples to demonstrate the steps**. Include links to files or GitHub projects, or copy/pasteable snippets, which you use in those examples.
 - **Describe the current behavior and how this enhancement would change it.**
-- **Explain why this enhancement would be useful** to most Easy Dates Picker users.
+- **Explain why this enhancement would be useful** to most `easy-dates-picker` users.
 - **List some other text editors or applications where this enhancement exists.**
-- **Specify which version of Easy Dates Picker you're using.**
+- **Specify which version of `easy-dates-picker` you're using.**
 
 ### Your First Code Contribution
 
-Unsure where to begin contributing to Easy Dates Picker? You can start by looking through these `beginner` and `help-wanted` issues:
+Unsure where to begin contributing to `easy-dates-picker`? You can start by looking through these `beginner` and `help-wanted` issues:
 
 - [Beginner issues](https://github.com/sandypockets/easy-dates-picker/labels/good%20first%20issue) - issues which should only require a few lines of code, and a test or two.
 - [Help wanted issues](https://github.com/sandypockets/easy-dates-picker/labels/help%20wanted) - issues which should be a bit more involved than `beginner` issues.
@@ -55,10 +77,10 @@ Unsure where to begin contributing to Easy Dates Picker? You can start by lookin
 
 The process described here has several goals:
 
-- Maintain Easy Dates Picker's quality.
+- Maintain `easy-dates-picker`'s quality.
 - Fix problems that are important to users.
-- Engage the community in working toward the best possible Easy Dates Picker.
-- Enable a sustainable system for Easy Dates Picker's maintainers to review contributions.
+- Engage the community in working toward the best possible `easy-dates-picker`.
+- Enable a sustainable system for `easy-dates-picker`'s maintainers to review contributions.
 
 Please follow these steps to have your contribution considered by the maintainers:
 

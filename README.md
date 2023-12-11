@@ -10,21 +10,20 @@
 ![npm](https://img.shields.io/npm/dw/easy-dates-picker)
 ![NPM](https://img.shields.io/npm/l/easy-dates-picker)
 
-Is this the right library for me?
-
 - Zero external dependencies
 - Single or range date selection
 - Localized - Over 30 languages included
 - Optionally detect and display the parent page language
 - Accessible, fully keyboard navigable
 - Cross-browser compatible
+- Light and dark mode
 - Easy to style beyond the defaults
 - Lightning fast set up
 
-Note: if you use the date picker with a library or framework that uses a virtual DOM (like React), then you might need to make some further modifications.
-
 ## Getting started
-The Easy Dates Picker is as quick to set up as it is lightweight. For detailed documentation, please view the [docs](https://github.com/sandypockets/easy-dates-picker/blob/main/DOCUMENTATION.md) in the repo.
+The `easy-dates-picker` is as quick to set up as it is lightweight. For detailed documentation, please view the [docs](https://github.com/sandypockets/easy-dates-picker/blob/main/DOCUMENTATION.md) in the repo.
+
+Note: if you use the date picker with a library or framework that uses a virtual DOM (like React), then you might need to make some further modifications.
 
 ### Install with a package manager
 ```bash
