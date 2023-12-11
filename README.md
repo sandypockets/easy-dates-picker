@@ -3,7 +3,7 @@
 
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/easy-dates-picker)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/easy-dates-picker)
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/sanypockets/easy-dates-picker/ci)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/sandypockets/easy-dates-picker/ci.yml)
 ![GitHub issues](https://img.shields.io/github/issues/sandypockets/easy-dates-picker)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/sandypockets/easy-dates-picker)
 ![npm](https://img.shields.io/npm/dt/easy-dates-picker)
