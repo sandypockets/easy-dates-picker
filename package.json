@@ -1,7 +1,9 @@
 {
   "name": "easy-dates-picker",
-  "version": "0.0.24",
-  "description": "A super lightweight vanilla JS date picker",
+  "version": "0.1.0",
+  "description": "A super lightweight, zero dependency date picker, written in vanilla JS",
+  "author": "sandypockets",
+  "license": "MIT",
   "main": "dist/datepicker.bundle.js",
   "files": [
     "dist/"
@@ -21,8 +23,6 @@
     },
     "testEnvironment": "jest-environment-jsdom"
   },
-  "author": "sandypockets",
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.23.5",
     "@babel/preset-env": "^7.23.5",

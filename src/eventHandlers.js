@@ -1,7 +1,6 @@
 export function attachEventListeners(element, changeMonth, handleDayClick) {
   const prevMonthButton = element.querySelector('.prev-month');
   const nextMonthButton = element.querySelector('.next-month');
-  const calendarContainer = element.querySelector('.datepicker-calendar-container');
   const daysContainer = element.querySelector('.datepicker-days');
 
   prevMonthButton.removeEventListener('click', prevMonthButton.listener);

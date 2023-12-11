@@ -166,12 +166,10 @@ export default function DatePicker(elementId, options) {
         this.selectedStartDate = clickedDate;
         this.selectedEndDate = null;
         this.render();
-        // Keep the calendar open and do not update the input yet
         this.element.querySelector('.datepicker-calendar-container').style.display = 'block';
       } else if (this.selectedStartDate && !this.selectedEndDate) {
         if (clickedDate.getTime() > this.selectedStartDate.getTime()) {
           this.selectedEndDate = clickedDate;
-          // Update the input only when both dates are selected
           const input = this.element.querySelector('.datepicker-input');
           if (input) {
             this.element.querySelector('.datepicker-input').value = `${this.selectedStartDate.toDateString()} ${
@@ -180,15 +178,12 @@ export default function DatePicker(elementId, options) {
           }
           this.triggerSelectCallback();
           this.render();
-          // Close the calendar after selecting the end date
           if (options.textInputEnabled) {
             this.element.querySelector('.datepicker-calendar-container').style.display = 'none';
           }
         } else {
-          // If the clicked date is before the start date, reset the start date
           this.selectedStartDate = clickedDate;
           this.render();
-          // Keep the calendar open to select the end date
           this.element.querySelector('.datepicker-calendar-container').style.display = 'block';
         }
       }
