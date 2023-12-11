@@ -1,6 +1,6 @@
 {
   "name": "easy-dates-picker",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A super lightweight, zero dependency date picker, written in vanilla JS",
   "author": "sandypockets",
   "license": "MIT",
