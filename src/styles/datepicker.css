@@ -14,12 +14,13 @@
   font-family: 'Roboto', sans-serif;
 }
 
-div.easy-dates-picker {
+div#easy-dates-picker {
   position: relative;
 }
 
 .datepicker-calendar-container {
   position: absolute;
+  top: 40px;
   z-index: 100;
   padding: 10px;
   margin-top: 1px;
