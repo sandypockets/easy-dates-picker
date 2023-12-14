@@ -13,3 +13,33 @@ form > div {
   justify-content: center;
   width: 300px;
 }
+
+form > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+label {
+  font-size: small;
+}
+
+input,
+textarea,
+button {
+  border-radius: 5px;
+  border: solid #00000030 1px;
+  padding: 5px 10px;
+}
+
+button {
+  cursor: pointer;
+  width: 100%;
+}
+
+.datepicker-input {
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  border: solid #00000030 1px;
+}
