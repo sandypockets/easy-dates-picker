@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Form with Easy Dates Picker</title>
+    <link rel="stylesheet" href="../dist/datepicker.css" />
+    <link rel="stylesheet" href="./form.css" />
+  </head>
+  <body>
+    <form action="#" method="post">
+      <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap">
+        <!-- Some input fields above the date picker -->
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" />
+        </div>
+
+        <!-- Date picker in the middle -->
+        <div id="easy-dates-picker"></div>
+
+        <!-- Some input fields to the side and below the date picker -->
+        <div>
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" />
+        </div>
+        <div>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message"></textarea>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    <script src="../dist/datepicker.bundle.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        function datePickerCallback(startDate, endDate) {
+          if (endDate) {
+            console.log('Date Range Selected:', startDate.toDateString(), 'to', endDate.toDateString());
+          } else {
+            console.log('Date Selected:', startDate.toDateString());
+          }
+        }
+
+        const options = {
+          mode: 'range', // 'single' or 'range', defaults to 'single'
+          onSelect: datePickerCallback, // Callback for whenever a date or date range is selected - Required
+          blockedDays: [0, 6], // Prevent Saturday and Sunday from being selected
+          showDayNames: true,
+          textInputEnabled: true, // Show input field, calendar displays on click
+          darkMode: true,
+          language: 'en', // language ISO code, defaults to en -> ignored if usePageLanguage is true
+          usePageLanguage: true, // Looks for a lang attribute on the page, and if the language is supported, uses it
+          usePageLanguageFallback: 'en', // If usePageLanguage is true, and the page language is not supported, use this language
+          cornerStyle: 'round', // Square or round
+        };
+
+        const datePicker = new DatePicker('easy-dates-picker', options);
+        datePicker.init();
+      });
+    </script>
+  </body>
+</html>
